@@ -1,10 +1,15 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { PenTool, Shield, Lock, CheckCircle, FileCheck, ArrowRight, Zap, Award } from 'lucide-react';
+import { FileText, Mail, Calculator, FileCheck, Shield, ArrowRight, Play, Zap, CheckCircle } from 'lucide-react';
 import Section from '../../components/ui/Section';
 import Button from '../../components/ui/Button';
 import Badge from '../../components/ui/Badge';
 import { DocumentPiece, WaxSeal, GlassBlade } from '../../components/ui/ThreeDComponents';
+import FloatingCard from '../../components/ui/FloatingCard';
+import ParticleBackground from '../../components/ui/ParticleBackground';
+import Floating3DShape, { ScrollReveal3D, Parallax3DElement } from '../../components/ui/3DAnimations';
+import AnimatedBlob, { PulsingOrb } from '../../components/ui/AnimatedBlob';
+import styles from '../../styles/responsive.module.css';
 
 export default function Execute() {
     const containerRef = useRef(null);
@@ -22,94 +27,88 @@ export default function Execute() {
     return (
         <div ref={containerRef} style={{ background: '#0F172A', color: 'white', minHeight: '400vh', position: 'relative' }}>
 
-            {/* 1. STICKY FINISHING STAGE */}
-            <div style={{ position: 'sticky', top: 0, height: '100vh', width: '100%', overflow: 'hidden' }}>
+            {/* Floating 3D Background Elements */}
+            <Floating3DShape shape="circle" size={180} top="5%" left="3%" delay={0} opacity={0.06} color="linear-gradient(135deg, #4F46E5 0%, #818CF8 100%)" />
+            <Floating3DShape shape="rounded" size={130} top="40%" right="5%" delay={1.5} opacity={0.07} color="linear-gradient(135deg, #818CF8 0%, #4F46E5 100%)" />
+            <AnimatedBlob size={300} top="70%" left="8%" opacity={0.05} delay={2} color="linear-gradient(135deg, #4F46E5 0%, #818CF8 100%)" />
+            <PulsingOrb size={100} bottom="10%" right="10%" delay={1} color="#818CF8" />
 
-                {/* Background Atmosphere */}
-                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50% 50%, #1E293B 0%, #0F172A 100%)' }} />
+            {/* Content Layers */}
+            <div className="container" style={{ position: 'relative', height: '100%', zIndex: 10, pointerEvents: 'none' }}>
 
-                {/* Central Focus: The Document Puzzle */}
-                <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 5 }}>
-                    <DocumentPuzzle scrollYProgress={scrollYProgress} />
-                </div>
+                {/* Stage 0: Hero */}
+                <Stage scrollYProgress={scrollYProgress} range={[0, 0.15]}>
+                    <div style={{ textAlign: 'center', maxWidth: 800, margin: '0 auto', pointerEvents: 'auto' }}>
+                        <Badge style={{ background: '#4F46E5', color: 'white', border: 'none', marginBottom: 24 }}>Module 04: Execute</Badge>
+                        <h1 style={{ fontSize: 'clamp(4rem, 10vw, 7rem)', fontWeight: 900, lineHeight: 0.85, marginBottom: 32 }}>
+                            THE <span style={{ color: '#818CF8' }}>CLOSING</span> <br /> SEQUENCE.
+                        </h1>
+                        <p style={{ fontSize: '1.5rem', opacity: 0.7, maxWidth: 600, margin: '0 auto 48px' }}>
+                            Watch your policy come together in real-time. Legally binding, instantly filed.
+                        </p>
+                        <Button size="xl" style={{ background: '#4F46E5', border: 'none' }}>Finalize Policy</Button>
+                    </div>
+                </Stage>
 
-                {/* Content Layers */}
-                <div className="container" style={{ position: 'relative', height: '100%', zIndex: 10, pointerEvents: 'none' }}>
-
-                    {/* Stage 0: Hero */}
-                    <Stage scrollYProgress={scrollYProgress} range={[0, 0.15]}>
-                        <div style={{ textAlign: 'center', maxWidth: 800, margin: '0 auto', pointerEvents: 'auto' }}>
-                            <Badge style={{ background: '#4F46E5', color: 'white', border: 'none', marginBottom: 24 }}>Module 04: Execute</Badge>
-                            <h1 style={{ fontSize: 'clamp(4rem, 10vw, 7rem)', fontWeight: 900, lineHeight: 0.85, marginBottom: 32 }}>
-                                THE <span style={{ color: '#818CF8' }}>CLOSING</span> <br /> SEQUENCE.
-                            </h1>
-                            <p style={{ fontSize: '1.5rem', opacity: 0.7, maxWidth: 600, margin: '0 auto 48px' }}>
-                                Watch your policy come together in real-time. Legally binding, instantly filed.
-                            </p>
-                            <Button size="xl" style={{ background: '#4F46E5', border: 'none' }}>Finalize Policy</Button>
+                {/* Stage 1: Verification */}
+                <Stage scrollYProgress={scrollYProgress} range={[0.25, 0.45]} side="left">
+                    <GlassBlade
+                        badge="Verification"
+                        title="Compliance Lock"
+                        description="Wilson performs a final 50-point compliance check against state regulations and carrier appetites."
+                        color="#10B981"
+                    >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                            <Lock size={24} color="#10B981" />
+                            <span style={{ fontWeight: 700, color: '#10B981' }}>SOC2 COMPLIANT</span>
                         </div>
-                    </Stage>
+                    </GlassBlade>
+                </Stage>
 
-                    {/* Stage 1: Verification */}
-                    <Stage scrollYProgress={scrollYProgress} range={[0.25, 0.45]} side="left">
-                        <GlassBlade
-                            badge="Verification"
-                            title="Compliance Lock"
-                            description="Wilson performs a final 50-point compliance check against state regulations and carrier appetites."
-                            color="#10B981"
-                        >
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                                <Lock size={24} color="#10B981" />
-                                <span style={{ fontWeight: 700, color: '#10B981' }}>SOC2 COMPLIANT</span>
-                            </div>
-                        </GlassBlade>
-                    </Stage>
+                {/* Stage 2: Binding */}
+                <Stage scrollYProgress={scrollYProgress} range={[0.55, 0.75]} side="right">
+                    <GlassBlade
+                        badge="Execution"
+                        title="Instant Bind"
+                        description="Once signing is complete, Wilson binds the policy and issues the COI via API in under 4 seconds."
+                        color="#F59E0B"
+                    >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                            <Zap size={24} color="#F59E0B" />
+                            <span style={{ fontWeight: 700, color: '#F59E0B' }}>AUTO-E-SIGN</span>
+                        </div>
+                    </GlassBlade>
+                </Stage>
 
-                    {/* Stage 2: Binding */}
-                    <Stage scrollYProgress={scrollYProgress} range={[0.55, 0.75]} side="right">
-                        <GlassBlade
-                            badge="Execution"
-                            title="Instant Bind"
-                            description="Once signing is complete, Wilson binds the policy and issues the COI via API in under 4 seconds."
-                            color="#F59E0B"
-                        >
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                                <Zap size={24} color="#F59E0B" />
-                                <span style={{ fontWeight: 700, color: '#F59E0B' }}>AUTO-E-SIGN</span>
-                            </div>
-                        </GlassBlade>
-                    </Stage>
+                {/* Stage 3: Archive */}
+                <Stage scrollYProgress={scrollYProgress} range={[0.85, 1]} side="center">
+                    <motion.div
+                        style={{
+                            textAlign: 'center',
+                            pointerEvents: 'auto',
+                            background: 'rgba(255, 255, 255, 0.05)',
+                            backdropFilter: 'blur(12px)',
+                            border: '1px solid rgba(255, 255, 255, 0.1)',
+                            borderRadius: '48px',
+                            padding: '80px',
+                            maxWidth: '1000px',
+                            boxShadow: '0 50px 100px -20px rgba(0,0,0,0.5)',
+                            position: 'relative',
+                            zIndex: 30
+                        }}
+                    >
+                        <Badge style={{ background: '#10B981', color: 'white', border: 'none', marginBottom: 24 }}>Complete</Badge>
+                        <h2 style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 900, marginBottom: 24, color: 'white' }}>Locked & Loaded.</h2>
+                        <p style={{ fontSize: '1.25rem', opacity: 0.8, marginBottom: 48, maxWidth: 600, margin: '0 auto 48px', lineHeight: 1.6 }}>
+                            Your policy is bound, filed, and archived. Commissions have been tracked automatically.
+                        </p>
+                        <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
+                            <Button size="lg" style={{ background: '#10B981', border: 'none', borderRadius: '100px', padding: '16px 40px' }}>Download Policy</Button>
+                            <Button size="lg" variant="outline" style={{ borderRadius: '100px', padding: '16px 40px' }}>View Dashboard</Button>
+                        </div>
+                    </motion.div>
+                </Stage>
 
-                    {/* Stage 3: Archive */}
-                    <Stage scrollYProgress={scrollYProgress} range={[0.85, 1]} side="center">
-                        <motion.div
-                            style={{
-                                textAlign: 'center',
-                                pointerEvents: 'auto',
-                                background: 'rgba(255, 255, 255, 0.05)',
-                                backdropFilter: 'blur(12px)',
-                                border: '1px solid rgba(255, 255, 255, 0.1)',
-                                borderRadius: '48px',
-                                padding: '80px',
-                                maxWidth: '1000px',
-                                boxShadow: '0 50px 100px -20px rgba(0,0,0,0.5)',
-                                position: 'relative',
-                                zIndex: 30
-                            }}
-                        >
-                            <Badge style={{ background: '#10B981', color: 'white', border: 'none', marginBottom: 24 }}>Complete</Badge>
-                            <h2 style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 900, marginBottom: 24, color: 'white' }}>Locked & Loaded.</h2>
-                            <p style={{ fontSize: '1.25rem', opacity: 0.8, marginBottom: 48, maxWidth: 600, margin: '0 auto 48px', lineHeight: 1.6 }}>
-                                Your policy is bound, filed, and archived. Commissions have been tracked automatically.
-                            </p>
-                            <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
-                                <Button size="lg" style={{ background: '#10B981', border: 'none', borderRadius: '100px', padding: '16px 40px' }}>Download Policy</Button>
-                                <Button size="lg" variant="outline" style={{ borderRadius: '100px', padding: '16px 40px' }}>View Dashboard</Button>
-                            </div>
-                        </motion.div>
-                    </Stage>
-
-                </div>
             </div>
 
             {/* Spacer sections */}

@@ -1,189 +1,308 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { MousePointer2, Cpu, Zap, ArrowRight, ShieldCheck, FileCheck, Layers, Repeat } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { FileText, Search, BarChart3, FileCheck, ArrowRight, Play, Upload, CheckCircle2 } from 'lucide-react';
 import Section from '../../components/ui/Section';
 import Button from '../../components/ui/Button';
-import Badge from '../../components/ui/Badge';
-import { NeuralNode, DocumentScanner, GlassBlade, SuccessTrophy } from '../../components/ui/ThreeDComponents';
+import FloatingCard from '../../components/ui/FloatingCard';
+import ParticleBackground from '../../components/ui/ParticleBackground';
 
 export default function Review() {
-    const containerRef = useRef(null);
-    const { scrollYProgress: rawScrollY } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"]
-    });
-
-    const scrollYProgress = useSpring(rawScrollY, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
-
-    // Background transition (Subtle color shifts)
-    const background = useTransform(
-        scrollYProgress,
-        [0, 0.5, 1],
-        ['#FFFFFF', '#F8FAFC', '#FFFFFF']
-    );
-
     return (
-        <motion.div ref={containerRef} style={{ background, minHeight: '400vh', position: 'relative' }}>
+        <div style={{ background: '#FFFFFF', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
 
-            {/* 1. IMMERSIVE STICKY STAGE */}
-            <div style={{ position: 'sticky', top: 0, height: '100vh', width: '100%', overflow: 'hidden' }}>
-
-                {/* Background Decor */}
-                <div style={{ position: 'absolute', inset: 0, opacity: 0.1, backgroundImage: 'radial-gradient(#10B981 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-
-                {/* Central 3D Focus (Neural Node) */}
-                <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
-                    <NeuralCenter scrollYProgress={scrollYProgress} />
-                </div>
-
-                {/* Content Layers */}
-                <div className="container" style={{ position: 'relative', height: '100%', zIndex: 10 }}>
-
-                    {/* Stage 0: Hero */}
-                    <Stage scrollYProgress={scrollYProgress} range={[0, 0.15]}>
-                        <div style={{ textAlign: 'center', maxWidth: 800, margin: '0 auto' }}>
-                            <Badge style={{ background: '#10B981', color: 'white', border: 'none', marginBottom: 24 }}>Precision Hub</Badge>
-                            <h1 style={{ fontSize: 'clamp(4rem, 10vw, 7rem)', fontWeight: 900, lineHeight: 0.85, color: '#111827', marginBottom: 32 }}>
-                                REVIEW <br /> <span style={{ color: '#059669' }}>REDEFINED.</span>
-                            </h1>
-                            <p style={{ fontSize: '1.5rem', color: '#4B5563', maxWidth: 600, margin: '0 auto 48px' }}>
-                                Your LLM-powered engine for instant insurance policy clarity and gap analysis.
-                            </p>
-                            <Button size="xl" style={{ padding: '24px 64px' }}>Analyze Now</Button>
+            {/* HERO SECTION - Centered with Visual Below */}
+            <Section padding="none" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', paddingBottom: '80px', background: 'linear-gradient(180deg, #FFF5F0 0%, #FFFFFF 100%)' }}>
+                <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#FF6B35', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '20px' }}>
+                            AI-Powered Policy Analysis
                         </div>
-                    </Stage>
-
-                    {/* Stage 1: Ingestion */}
-                    <Stage scrollYProgress={scrollYProgress} range={[0.2, 0.45]} side="left">
-                        <GlassBlade
-                            badge="Phase 01: Ingestion"
-                            title="Multi-Format OCR"
-                            description="Upload PDFs, scans, or photos. Our system extracts every clause, table, and endorsement with perfect fidelity."
-                            color="#10B981"
-                        >
-                            <div style={{ display: 'flex', gap: 16 }}>
-                                <Badge variant="outline"><FileCheck size={14} style={{ marginRight: 6 }} /> PDF</Badge>
-                                <Badge variant="outline"><Layers size={14} style={{ marginRight: 6 }} /> Image</Badge>
-                            </div>
-                        </GlassBlade>
-                    </Stage>
-
-                    {/* Stage 2: Analysis */}
-                    <Stage scrollYProgress={scrollYProgress} range={[0.5, 0.75]} side="right">
-                        <GlassBlade
-                            badge="Phase 02: Analysis"
-                            title="Contextual LLM"
-                            description="Wilson understands the nuances of insurance language, identifying gaps and exclusions that humans miss."
-                            color="#4F46E5"
-                        >
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                                <Cpu size={24} color="#4F46E5" />
-                                <span style={{ fontWeight: 700, color: '#4F46E5' }}>99.8% CERTAINTY</span>
-                            </div>
-                        </GlassBlade>
-                    </Stage>
-
-                    {/* Stage 3: Verification */}
-                    <Stage scrollYProgress={scrollYProgress} range={[0.8, 1]} side="center">
-                        <div style={{ textAlign: 'center' }}>
-                            <Badge style={{ background: '#F59E0B', color: 'white', border: 'none', marginBottom: 24 }}>Success</Badge>
-                            <h2 style={{ fontSize: '4rem', fontWeight: 900, color: '#111827', marginBottom: 24 }}>100% Verified.</h2>
-                            <p style={{ fontSize: '1.25rem', color: '#4B5563', marginBottom: 48, maxWidth: 500, margin: '0 auto 48px' }}>
-                                Your analysis is ready. Download the report or push directly to your AMS.
-                            </p>
-                            <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
-                                <Button size="lg">Download Report</Button>
-                                <Button size="lg" variant="outline">Email Insured</Button>
-                            </div>
+                        <h1 style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', fontWeight: 800, lineHeight: 1.1, color: '#1A1A1A', marginBottom: '24px', maxWidth: '900px', margin: '0 auto 24px' }}>
+                            Analyze Policies in Seconds. <br />
+                            Not Hours.
+                        </h1>
+                        <p style={{ fontSize: '1.25rem', color: '#6B7280', lineHeight: 1.6, marginBottom: '40px', maxWidth: '700px', margin: '0 auto 40px' }}>
+                            Upload policies to extract coverage details, identify gaps, and generate professional risk reports instantly.
+                        </p>
+                        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                            <Button size="xl" style={{ background: 'linear-gradient(135deg, #FF6B35 0%, #FF4D6D 100%)', color: 'white', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: 'none' }}>
+                                Get Started
+                            </Button>
+                            <Button size="xl" style={{ background: 'white', color: '#FF6B35', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: '2px solid #FF6B35' }}>
+                                <Play size={20} style={{ marginRight: '8px' }} /> Watch Demo
+                            </Button>
                         </div>
-                    </Stage>
+                    </motion.div>
 
+                    {/* Visual: Policy Upload to Analysis Flow */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        style={{ marginTop: '80px', maxWidth: '1000px', margin: '80px auto 0' }}
+                    >
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '32px', alignItems: 'center' }}>
+                            {/* Upload Card */}
+                            <FloatingCard delay={0.5}>
+                                <div style={{
+                                    background: 'white',
+                                    borderRadius: '20px',
+                                    padding: '32px',
+                                    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
+                                    border: '2px dashed rgba(255, 107, 53, 0.3)',
+                                    textAlign: 'center'
+                                }}>
+                                    <Upload size={40} style={{ color: '#FF6B35', margin: '0 auto 16px' }} />
+                                    <div style={{ fontSize: '1.125rem', fontWeight: 700, color: '#1A1A1A', marginBottom: '8px' }}>Upload Policy</div>
+                                    <div style={{ fontSize: '0.875rem', color: '#6B7280' }}>50-page PDF</div>
+                                </div>
+                            </FloatingCard>
+
+                            {/* Arrow */}
+                            <ArrowRight size={32} style={{ color: '#FF6B35' }} />
+
+                            {/* Analysis Result Card */}
+                            <FloatingCard delay={0.7}>
+                                <div style={{
+                                    background: 'white',
+                                    borderRadius: '20px',
+                                    padding: '32px',
+                                    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
+                                    border: '2px solid rgba(255, 107, 53, 0.2)'
+                                }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+                                        <CheckCircle2 size={24} style={{ color: '#10B981' }} />
+                                        <div style={{ fontSize: '1.125rem', fontWeight: 700, color: '#1A1A1A' }}>Analysis Complete</div>
+                                    </div>
+                                    <div style={{ textAlign: 'left', fontSize: '0.875rem', color: '#6B7280', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                        <div>✓ Coverage extracted</div>
+                                        <div>✓ 7 gaps identified</div>
+                                        <div>✓ Report generated</div>
+                                    </div>
+                                </div>
+                            </FloatingCard>
+                        </div>
+                    </motion.div>
                 </div>
+            </Section>
 
-                {/* Vertical Scroll Progress Bar (Right Side) */}
-                <ProgressBar scrollYProgress={scrollYProgress} />
-            </div>
+            {/* HOW IT WORKS - Horizontal Timeline */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px', background: 'white' }}>
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ textAlign: 'center', marginBottom: '80px' }}
+                    >
+                        <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#FF6B35', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '16px' }}>
+                            How It Works
+                        </div>
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            From Policy Upload to <br />Professional Analysis in 90 Seconds
+                        </h2>
+                    </motion.div>
 
-            {/* Spacer sections to drive the scroll */}
-            <div style={{ height: '100vh' }} />
-            <div style={{ height: '100vh' }} />
-            <div style={{ height: '100vh' }} />
-            <div style={{ height: '100vh' }} />
-        </motion.div>
-    );
-}
+                    <div style={{ position: 'relative' }}>
+                        {/* Timeline Line */}
+                        <div style={{
+                            position: 'absolute',
+                            top: '28px',
+                            left: '10%',
+                            right: '10%',
+                            height: '4px',
+                            background: 'linear-gradient(90deg, #FF6B35 0%, #FF4D6D 100%)',
+                            borderRadius: '2px',
+                            zIndex: 0
+                        }} />
 
-// Central 3D Visual Controller
-function NeuralCenter({ scrollYProgress }) {
-    const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.5, 1.2]);
-    const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
-    const opacity = useTransform(scrollYProgress, [0, 0.1, 0.15, 0.8, 1], [0.8, 1, 0.4, 0.4, 1]); // Fade when stages are active
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', position: 'relative', zIndex: 1 }}>
+                            {[
+                                { step: '1', icon: <Upload size={24} />, title: 'Upload Policy Documents', desc: 'Drag and drop policies, binders, or coverage summaries' },
+                                { step: '2', icon: <Search size={24} />, title: 'Automated Extraction', desc: 'Agents read and structure every coverage section' },
+                                { step: '3', icon: <BarChart3 size={24} />, title: 'Gap Analysis', desc: 'Compare coverage against operational risks' },
+                                { step: '4', icon: <FileCheck size={24} />, title: 'Professional Reports', desc: 'Generate client-ready coverage summaries' }
+                            ].map((item, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: i * 0.15 }}
+                                    style={{ textAlign: 'center' }}
+                                >
+                                    <div style={{
+                                        width: '56px',
+                                        height: '56px',
+                                        borderRadius: '50%',
+                                        background: 'linear-gradient(135deg, #FF6B35 0%, #FF4D6D 100%)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        margin: '0 auto 20px',
+                                        color: 'white',
+                                        boxShadow: '0 4px 16px rgba(255, 107, 53, 0.3)'
+                                    }}>
+                                        {item.icon}
+                                    </div>
+                                    <h3 style={{ fontSize: '1.125rem', fontWeight: 700, color: '#1A1A1A', marginBottom: '12px' }}>{item.title}</h3>
+                                    <p style={{ fontSize: '0.95rem', color: '#6B7280', lineHeight: 1.6 }}>{item.desc}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </Section>
 
-    return (
-        <motion.div style={{ scale, rotateZ: rotate, opacity }}>
-            <NeuralNode size={450} />
-        </motion.div>
-    );
-}
+            {/* WHAT YOU GET - Two Column Layout */}
+            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ textAlign: 'center', marginBottom: '80px' }}
+                    >
+                        <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#FF6B35', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '16px' }}>
+                            Complete Policy Intelligence
+                        </div>
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            Everything You Need from Every Policy
+                        </h2>
+                    </motion.div>
 
-// Stage Component
-function Stage({ children, scrollYProgress, range, side = "center" }) {
-    const opacity = useTransform(scrollYProgress,
-        [range[0] - 0.05, range[0], range[1], range[1] + 0.05],
-        [0, 1, 1, 0]
-    );
-    const x = useTransform(scrollYProgress,
-        [range[0] - 0.05, range[0], range[1], range[1] + 0.05],
-        [side === 'left' ? -100 : side === 'right' ? 100 : 0, 0, 0, side === 'left' ? -100 : side === 'right' ? 100 : 0]
-    );
-    const y = useTransform(scrollYProgress,
-        [range[0] - 0.05, range[0], range[1], range[1] + 0.05],
-        [20, 0, 0, -20]
-    );
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '32px' }}>
+                        {[
+                            { icon: <FileText size={28} />, title: 'Coverage Summaries', desc: 'Structured tables showing limits, deductibles, and key terms by coverage section' },
+                            { icon: <Search size={28} />, title: 'Gap Analysis', desc: 'Identified coverage gaps with risk severity and actionable recommendations' },
+                            { icon: <BarChart3 size={28} />, title: 'Policy Comparisons', desc: 'Side-by-side comparison of incumbent vs. proposed programs showing only differences' },
+                            { icon: <FileCheck size={28} />, title: 'Renewal Analysis', desc: 'Assessment of expiring coverage against renewal quotes with recommendations' },
+                            { icon: <FileText size={28} />, title: 'Contract Reviews', desc: 'Extract insurance requirements from client contracts and assess compliance' },
+                            { icon: <Search size={28} />, title: 'Q&A on Policies', desc: 'Ask specific questions about any policy detail—get instant, accurate answers' }
+                        ].map((feature, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: (i % 2) * 0.1 }}
+                                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                                style={{
+                                    background: 'white',
+                                    borderRadius: '20px',
+                                    padding: '32px',
+                                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                                    border: '2px solid rgba(255, 107, 53, 0.1)',
+                                    display: 'flex',
+                                    gap: '20px',
+                                    alignItems: 'flex-start'
+                                }}
+                            >
+                                <div style={{
+                                    width: '56px',
+                                    height: '56px',
+                                    borderRadius: '14px',
+                                    background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    flexShrink: 0,
+                                    color: 'white'
+                                }}>
+                                    {feature.icon}
+                                </div>
+                                <div>
+                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#1A1A1A', marginBottom: '12px' }}>{feature.title}</h3>
+                                    <p style={{ fontSize: '0.95rem', color: '#6B7280', lineHeight: 1.6, margin: 0 }}>{feature.desc}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </Section>
 
-    const justifyContent = side === 'left' ? 'flex-start' : side === 'right' ? 'flex-end' : 'center';
+            {/* AGENT CAPABILITIES - Card Grid */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ textAlign: 'center', marginBottom: '80px' }}
+                    >
+                        <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#FF6B35', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '16px' }}>
+                            Agent Capabilities
+                        </div>
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            Purpose-Built for Insurance Analysis
+                        </h2>
+                    </motion.div>
 
-    return (
-        <motion.div
-            style={{
-                position: 'absolute',
-                inset: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: justifyContent,
-                opacity,
-                x,
-                y,
-                pointerEvents: 'none'
-            }}
-        >
-            <div style={{ pointerEvents: 'auto' }}>
-                {children}
-            </div>
-        </motion.div>
-    );
-}
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px' }}>
+                        {[
+                            { title: 'Coverage Summary Agent', desc: 'Extracts and structures coverage from complex policy documents' },
+                            { title: 'Gap Analysis Agent', desc: 'Identifies uninsured exposures against operational risks' },
+                            { title: 'Policy Comparison Agent', desc: 'Compares programs to highlight coverage improvements' },
+                            { title: 'Contract Review Agent', desc: 'Extracts insurance requirements and assesses compliance' },
+                            { title: 'Session Memory', desc: 'Upload once—all agents access the same policy context' }
+                        ].map((agent, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.4, delay: i * 0.08 }}
+                                style={{
+                                    background: 'linear-gradient(135deg, #FF6B35 0%, #FF4D6D 100%)',
+                                    borderRadius: '16px',
+                                    padding: '28px',
+                                    color: 'white',
+                                    textAlign: 'center'
+                                }}
+                            >
+                                <h3 style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '12px' }}>{agent.title}</h3>
+                                <p style={{ fontSize: '0.95rem', opacity: 0.95, lineHeight: 1.6, margin: 0 }}>{agent.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </Section>
 
-function ProgressBar({ scrollYProgress }) {
-    return (
-        <div style={{ position: 'absolute', right: 40, top: '50%', transform: 'translateY(-50%)', height: 200, width: 4, background: '#F1F5F9', borderRadius: 2 }}>
-            <motion.div
-                style={{
-                    width: '100%',
-                    height: '100%',
-                    background: '#10B981',
-                    borderRadius: 2,
-                    scaleY: scrollYProgress,
-                    originY: 0
-                }}
-            />
-            {[1, 2, 3, 4].map(i => (
-                <div key={i} style={{ position: 'absolute', top: `${(i - 1) * 33.3}%`, right: -6, width: 12, height: 12, borderRadius: '50%', background: 'white', border: '2px solid #10B981', zIndex: 10 }} />
-            ))}
+            {/* FINAL CTA */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px', background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)', position: 'relative', overflow: 'hidden' }}>
+                <ParticleBackground count={12} />
+
+                <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '800px' }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: 'white', marginBottom: '24px' }}>
+                            See Policy Analysis in Action
+                        </h2>
+                        <p style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.9)', lineHeight: 1.6, marginBottom: '48px' }}>
+                            Watch Broker Agentx analyze a 50-page policy and generate a complete gap analysis in under 2 minutes.
+                        </p>
+                        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                            <Button size="xl" style={{ background: 'linear-gradient(135deg, #FF6B35 0%, #FF4D6D 100%)', color: 'white', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: 'none' }}>
+                                <Play size={20} style={{ marginRight: '8px' }} /> Watch Demo
+                            </Button>
+                            <Button size="xl" style={{ background: 'white', color: '#FF6B35', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: 'none' }}>
+                                Get Started <ArrowRight size={20} style={{ marginLeft: '8px' }} />
+                            </Button>
+                        </div>
+                    </motion.div>
+                </div>
+            </Section>
+
         </div>
     );
 }

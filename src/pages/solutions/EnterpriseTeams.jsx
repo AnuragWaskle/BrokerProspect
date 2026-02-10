@@ -1,171 +1,467 @@
 import { motion } from 'framer-motion';
-import { Shield, Lock, Globe, Database, Server, Zap, CheckCircle2, BarChart, LayoutGrid, Building2 } from 'lucide-react';
+import { Server, Cloud, Network, Shield, Lock, FileKey, Key, Activity, Code, Headphones, BookOpen, Clock, ArrowRight, Download, Calendar } from 'lucide-react';
 import Section from '../../components/ui/Section';
 import Button from '../../components/ui/Button';
-import Badge from '../../components/ui/Badge';
-import Tilt from '../../components/ui/Tilt';
+import FloatingCard from '../../components/ui/FloatingCard';
+import AnimatedCounter from '../../components/ui/AnimatedCounter';
+import OrangeFeatureCard from '../../components/ui/OrangeFeatureCard';
+import ParticleBackground from '../../components/ui/ParticleBackground';
 
 export default function EnterpriseTeams() {
     return (
-        <div style={{ background: '#FFFFFF', color: '#111827', minHeight: '100vh' }}>
-            {/* 1. HERO SECTION */}
-            <Section padding="xl" style={{ position: 'relative', overflow: 'hidden', paddingTop: '180px', paddingBottom: '160px', background: '#F8FAFC' }}>
-                <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.2fr) 1fr', gap: '100px', alignItems: 'center' }}>
-                        <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-                            <Badge style={{ background: 'rgba(30, 64, 175, 0.1)', color: '#1E40AF', marginBottom: '24px' }}>
-                                For Global Brokerages & Enterprises
-                            </Badge>
-                            <h1 style={{ fontSize: 'clamp(3.5rem, 6vw, 5rem)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.02em', marginBottom: '32px' }}>
-                                One Source <br />
-                                <span style={{ color: '#2563EB' }}>Of Truth.</span>
-                            </h1>
-                            <p style={{ fontSize: '1.25rem', color: '#4B5563', maxWidth: '600px', marginBottom: '48px', lineHeight: 1.6 }}>
-                                Unify fragmented regional teams, secure sensitive client data, and command your global operations with institutional-grade AI.
-                            </p>
-                            <div style={{ display: 'flex', gap: '16px' }}>
-                                <Button size="lg" style={{ background: '#1E40AF', color: 'white', borderRadius: '100px', border: 'none' }}>
-                                    Enterprise Consultation
-                                </Button>
-                                <Button variant="outline" size="lg" style={{ borderRadius: '100px' }}>
-                                    Security Roadmap
-                                </Button>
-                            </div>
-                        </motion.div>
+        <div style={{ background: '#FFFFFF', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
 
+            {/* HERO SECTION */}
+            <Section padding="none" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', paddingBottom: '120px', background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FF4D6D 100%)' }}>
+                <ParticleBackground count={15} />
+
+                <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 1 }}
-                            style={{ position: 'relative' }}
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
                         >
-                            <div style={{ position: 'relative', zIndex: 2 }}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop"
-                                    style={{ width: '100%', borderRadius: '32px', boxShadow: '0 50px 100px -20px rgba(0,0,0,0.1)' }}
-                                    alt="Global Headquarters"
-                                />
-                            </div>
-
-                            {/* Overlapping Enterprise Badges */}
-                            <motion.div
-                                animate={{ y: [0, -20, 0] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                style={{
-                                    position: 'absolute', top: '-30px', left: '-30px', zIndex: 3,
-                                    background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #E5E7EB',
-                                    display: 'flex', flexDirection: 'column', gap: '8px', boxShadow: '0 20px 40px rgba(0,0,0,0.05)'
-                                }}
-                            >
-                                <Shield size={24} color="#1E40AF" fill="#1E40AF11" />
-                                <div style={{ fontWeight: 800, fontSize: '1.1rem' }}>SOC2 TYPE II</div>
-                                <div style={{ fontSize: '0.75rem', color: '#6B7280', fontWeight: 600 }}>CERTIFIED 2026</div>
-                            </motion.div>
-
-                            <motion.div
-                                animate={{ y: [0, 20, 0] }}
-                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                                style={{
-                                    position: 'absolute', bottom: '10%', right: '-40px', zIndex: 3,
-                                    background: '#111827', color: 'white', padding: '24px', borderRadius: '16px',
-                                    boxShadow: '0 20px 50px rgba(0,0,0,0.2)', width: '240px'
-                                }}
-                            >
-                                <div style={{ marginBottom: '16px', opacity: 0.6, fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase' }}>Data Sync</div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                    <Globe size={20} color="#3B82F6" />
-                                    <span style={{ fontWeight: 700 }}>4 Regional Hubs Live</span>
-                                </div>
-                            </motion.div>
-                        </motion.div>
-                    </div>
-                </div>
-            </Section>
-
-            {/* 2. THE INFRASTRUCTURE (LIGHT GRID) */}
-            <Section padding="xl" style={{ paddingTop: '160px', paddingBottom: '160px' }}>
-                <div className="container">
-                    <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 100px' }}>
-                        <h2 style={{ fontSize: '3.5rem', fontWeight: 900, marginBottom: '24px' }}>Built for Scale.</h2>
-                        <p style={{ fontSize: '1.25rem', opacity: 0.6, lineHeight: 1.6 }}>Enterprise teams require more than just a tool. They require a platform that respects their existing workflows, security mandates, and global footprint.</p>
-                    </div>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '40px' }}>
-                        <InfraCard icon={<Database />} title="Shared Ledger" desc="Unified prospect data across all departments." color="#2563EB" />
-                        <InfraCard icon={<Server />} title="Multi-Cloud" desc="Deployment options to match your IT strategy." color="#10B981" />
-                        <InfraCard icon={<LayoutGrid />} title="Governance" desc="Granular RBAC and comprehensive audit logs." color="#F59E0B" />
-                    </div>
-                </div>
-            </Section>
-
-            {/* 3. SECURITY & TRUST */}
-            <Section padding="xl" style={{ background: '#F8FAFC', paddingTop: '160px', paddingBottom: '160px' }}>
-                <div className="container" style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '48px', padding: '100px', boxShadow: '0 50px 100px -30px rgba(0,0,0,0.03)' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '100px', alignItems: 'center' }}>
-                        <div>
-                            <Badge color="blue" style={{ marginBottom: '24px' }}>Security First</Badge>
-                            <h2 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '32px' }}>Your data is your <br /> sovereignty.</h2>
-                            <p style={{ fontSize: '1.25rem', color: '#4B5563', marginBottom: '40px', lineHeight: 1.6 }}>
-                                Wilson is designed for the high-security environment of modern insurance. We don't just protect your data; we ensure you remain the sole owner of the insights it generates.
+                            <h1 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 800, lineHeight: 1.1, color: 'white', marginBottom: '24px' }}>
+                                Automate at Scale. <br />
+                                <span style={{ opacity: 0.9 }}>Deploy with Confidence.</span>
+                            </h1>
+                            <p style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.95)', lineHeight: 1.6, marginBottom: '40px', maxWidth: '540px' }}>
+                                Enterprise-grade automation with on-premises deployment, custom integrations, and dedicated support.
                             </p>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px' }}>
-                                <SecurityCheck title="End-to-End Encryption" />
-                                <SecurityCheck title="Regional Data Hosting" />
-                                <SecurityCheck title="Single Sign-On (SSO)" />
-                                <SecurityCheck title="Compliance Exporting" />
+                            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                                <Button size="xl" style={{ background: 'white', color: '#FF6B35', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: 'none', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)' }}>
+                                    Contact Sales
+                                </Button>
+                                <Button size="xl" style={{ background: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: '1px solid rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(10px)' }}>
+                                    Request Demo
+                                </Button>
                             </div>
-                        </div>
-                        <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
-                            <div style={{ width: '100%', height: '400px', background: '#F1F5F9', borderRadius: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px dashed #CBD5E1' }}>
-                                <Lock size={120} color="#1E40AF" strokeWidth={1} style={{ opacity: 0.2 }} />
+                        </motion.div>
+
+                        <FloatingCard delay={0.3}>
+                            <div style={{
+                                background: 'white',
+                                borderRadius: '24px',
+                                padding: '40px',
+                                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+                            }}>
                                 <motion.div
-                                    animate={{ rotate: 360 }}
-                                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                                    style={{ position: 'absolute', width: 200, height: 200, border: '2px solid #1E40AF11', borderRadius: '50%' }}
-                                />
-                                <motion.div
-                                    animate={{ rotate: -360 }}
-                                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                                    style={{ position: 'absolute', width: 280, height: 280, border: '2px dashed #1E40AF11', borderRadius: '50%' }}
-                                />
+                                    animate={{ rotate: [0, 5, -5, 0] }}
+                                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                    style={{
+                                        width: '80px',
+                                        height: '80px',
+                                        borderRadius: '20px',
+                                        background: 'linear-gradient(135deg, #FF6B35 0%, #FF4D6D 100%)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        margin: '0 auto 24px',
+                                        color: 'white'
+                                    }}
+                                >
+                                    <Shield size={40} />
+                                </motion.div>
+                                <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#1A1A1A', textAlign: 'center', marginBottom: '16px' }}>Enterprise Security</div>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                    {['SOC 2 Type II', 'SSO Integration', 'On-Premises Deploy', 'Custom Security'].map((item, i) => (
+                                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.95rem', color: '#6B7280' }}>
+                                            <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#10B981', flexShrink: 0 }} />
+                                            {item}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        </FloatingCard>
                     </div>
                 </div>
             </Section>
 
-            {/* 4. FINAL CTA */}
-            <Section padding="xl" style={{ textAlign: 'center', paddingTop: '160px', paddingBottom: '160px' }}>
-                <div className="container" style={{ maxWidth: '800px' }}>
-                    <h2 style={{ fontSize: '3.5rem', fontWeight: 900, marginBottom: '32px' }}>Talk to our solutions team.</h2>
-                    <Button size="xl" style={{ background: '#1E40AF', color: 'white', borderRadius: '100px', padding: '20px 60px' }}>
-                        Schedule Enterprise Meeting
-                    </Button>
+            {/* ENTERPRISE REQUIREMENTS */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container" style={{ maxWidth: '900px', textAlign: 'center' }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            Built for Large-Scale Deployment
+                        </h2>
+                        <p style={{ fontSize: '1.25rem', color: '#6B7280', lineHeight: 1.6, marginBottom: '60px' }}>
+                            You need more than software—you need enterprise capabilities without enterprise complexity.
+                        </p>
+                    </motion.div>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'left' }}>
+                        {[
+                            'On-premises deployment options to meet data security requirements',
+                            'Custom integrations with legacy AMS and proprietary systems',
+                            'White-glove implementation and change management support',
+                            'Dedicated technical resources and SLAs',
+                            'Volume pricing that makes sense at scale'
+                        ].map((item, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: i * 0.1 }}
+                                style={{
+                                    display: 'flex',
+                                    gap: '16px',
+                                    alignItems: 'center',
+                                    background: 'white',
+                                    padding: '20px 24px',
+                                    borderRadius: '12px',
+                                    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.05)',
+                                    border: '1px solid rgba(255, 107, 53, 0.1)'
+                                }}
+                            >
+                                <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'linear-gradient(135deg, #FF6B35, #FF8C42)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'white' }} />
+                                </div>
+                                <span style={{ fontSize: '1.05rem', color: '#1A1A1A' }}>{item}</span>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </Section>
-        </div>
-    );
-}
 
-function InfraCard({ icon, title, desc, color }) {
-    return (
-        <Tilt style={{ display: 'block' }}>
-            <div style={{ background: 'white', padding: '60px 40px', borderRadius: '32px', border: '1px solid #E5E7EB', boxShadow: '0 20px 40px rgba(0,0,0,0.02)' }}>
-                <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: `${color}11`, color: color, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '32px' }}>
-                    {icon}
+            {/* DEPLOYMENT OPTIONS */}
+            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ textAlign: 'center', marginBottom: '80px' }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            Deployment Options
+                        </h2>
+                    </motion.div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px' }}>
+                        <OrangeFeatureCard
+                            icon={<Server size={32} />}
+                            title="On-Premises"
+                            description="Deploy Broker Agentx within your own infrastructure—your data never leaves your environment."
+                            delay={0}
+                        />
+                        <OrangeFeatureCard
+                            icon={<Cloud size={32} />}
+                            title="Private Cloud"
+                            description="Dedicated cloud instance with isolated data storage and custom security policies."
+                            delay={0.1}
+                        />
+                        <OrangeFeatureCard
+                            icon={<Network size={32} />}
+                            title="Hybrid Deployment"
+                            description="Critical workflows on-premises, standard workflows in cloud."
+                            delay={0.2}
+                        />
+                    </div>
                 </div>
-                <h3 style={{ fontSize: '1.75rem', fontWeight: 800, marginBottom: '16px' }}>{title}</h3>
-                <p style={{ color: '#4B5563', lineHeight: 1.6 }}>{desc}</p>
-            </div>
-        </Tilt>
-    );
-}
+            </Section>
 
-function SecurityCheck({ title }) {
-    return (
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-            <CheckCircle2 color="#10B981" size={20} />
-            <span style={{ fontWeight: 600, fontSize: '1rem' }}>{title}</span>
+            {/* SECURITY & COMPLIANCE */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ textAlign: 'center', marginBottom: '80px' }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            Security & Compliance
+                        </h2>
+                    </motion.div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '28px' }}>
+                        {[
+                            { icon: <Shield size={28} />, title: 'SOC 2 Type II', desc: 'Independently audited security controls' },
+                            { icon: <Lock size={28} />, title: 'Role-Based Access', desc: 'Granular permissions and approval workflows' },
+                            { icon: <Key size={28} />, title: 'SSO Integration', desc: 'Connect to Okta, Azure AD, etc.' },
+                            { icon: <Activity size={28} />, title: 'Audit Logging', desc: 'Track every action and data access' },
+                            { icon: <FileKey size={28} />, title: 'Data Isolation', desc: 'Never commingled or used for training' },
+                            { icon: <Shield size={28} />, title: 'Custom Security', desc: 'Configure to meet your compliance needs' }
+                        ].map((feature, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.4, delay: i * 0.08 }}
+                                whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                                style={{
+                                    background: 'white',
+                                    borderRadius: '16px',
+                                    padding: '28px',
+                                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                                    border: '1px solid rgba(255, 107, 53, 0.1)',
+                                    textAlign: 'center'
+                                }}
+                            >
+                                <div style={{
+                                    width: '52px',
+                                    height: '52px',
+                                    borderRadius: '12px',
+                                    background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    margin: '0 auto 16px',
+                                    color: 'white'
+                                }}>
+                                    {feature.icon}
+                                </div>
+                                <h3 style={{ fontSize: '1.125rem', fontWeight: 700, color: '#1A1A1A', marginBottom: '8px' }}>{feature.title}</h3>
+                                <p style={{ fontSize: '0.9rem', color: '#6B7280', lineHeight: 1.5, margin: 0 }}>{feature.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </Section>
+
+            {/* CUSTOM INTEGRATIONS */}
+            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                        >
+                            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                                Custom Integrations
+                            </h2>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                                {[
+                                    { title: 'Legacy AMS Support', desc: 'Custom connectors for Applied, Epic, Sagitta, or proprietary systems' },
+                                    { title: 'API Access', desc: 'Full API documentation for building custom integrations' },
+                                    { title: 'Integration Engineers', desc: 'Technical resources to build and maintain enterprise integrations' },
+                                    { title: 'Workflow Customization', desc: 'Tailor agent behavior and outputs to match your firm\'s standards' }
+                                ].map((item, i) => (
+                                    <div key={i} style={{ paddingLeft: '20px', borderLeft: '3px solid #FF6B35' }}>
+                                        <div style={{ fontSize: '1.125rem', fontWeight: 700, color: '#1A1A1A', marginBottom: '8px' }}>{item.title}</div>
+                                        <div style={{ fontSize: '0.95rem', color: '#6B7280', lineHeight: 1.6 }}>{item.desc}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+
+                        <FloatingCard delay={0.2}>
+                            <div style={{
+                                background: 'white',
+                                borderRadius: '20px',
+                                padding: '40px',
+                                boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)'
+                            }}>
+                                <div style={{ fontSize: '1rem', fontWeight: 600, color: '#FF6B35', marginBottom: '20px' }}>API Integration</div>
+                                <div style={{ background: '#F9FAFB', borderRadius: '12px', padding: '20px', fontFamily: 'monospace', fontSize: '0.85rem', color: '#1A1A1A' }}>
+                                    <div>{'{'}</div>
+                                    <div style={{ paddingLeft: '20px' }}>"endpoint": "/api/v1/prospect",</div>
+                                    <div style={{ paddingLeft: '20px' }}>"method": "POST",</div>
+                                    <div style={{ paddingLeft: '20px' }}>"auth": "Bearer token"</div>
+                                    <div>{'}'}</div>
+                                </div>
+                            </div>
+                        </FloatingCard>
+                    </div>
+                </div>
+            </Section>
+
+            {/* IMPLEMENTATION TIMELINE */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ textAlign: 'center', marginBottom: '80px' }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            Enterprise Implementation Process
+                        </h2>
+                    </motion.div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '32px' }}>
+                        {[
+                            { phase: 'Phase 1', title: 'Discovery & Planning', duration: '2-4 weeks', desc: 'Technical requirements, security review, integration planning' },
+                            { phase: 'Phase 2', title: 'Deployment & Integration', duration: '4-8 weeks', desc: 'System deployment, custom integrations, security configuration' },
+                            { phase: 'Phase 3', title: 'Pilot Rollout', duration: '4-6 weeks', desc: 'Limited user group testing and workflow validation' },
+                            { phase: 'Phase 4', title: 'Full Deployment', duration: 'Ongoing', desc: 'Phased rollout across organization with training and support' }
+                        ].map((item, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: i * 0.15 }}
+                                style={{
+                                    position: 'relative',
+                                    background: 'white',
+                                    borderRadius: '20px',
+                                    padding: '32px',
+                                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                                    border: '2px solid rgba(255, 107, 53, 0.15)'
+                                }}
+                            >
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '-16px',
+                                    left: '32px',
+                                    background: 'linear-gradient(135deg, #FF6B35 0%, #FF4D6D 100%)',
+                                    color: 'white',
+                                    padding: '8px 16px',
+                                    borderRadius: '20px',
+                                    fontSize: '0.875rem',
+                                    fontWeight: 700
+                                }}>
+                                    {item.phase}
+                                </div>
+                                <div style={{ fontSize: '1.25rem', fontWeight: 700, color: '#1A1A1A', marginTop: '12px', marginBottom: '8px' }}>{item.title}</div>
+                                <div style={{ fontSize: '0.95rem', color: '#FF6B35', fontWeight: 600, marginBottom: '12px' }}>{item.duration}</div>
+                                <p style={{ fontSize: '0.95rem', color: '#6B7280', lineHeight: 1.6, margin: 0 }}>{item.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </Section>
+
+            {/* ENTERPRISE SUPPORT */}
+            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ textAlign: 'center', marginBottom: '80px' }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            Enterprise Support
+                        </h2>
+                    </motion.div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px' }}>
+                        {[
+                            { icon: <Headphones size={28} />, title: 'Dedicated Account Team', desc: 'Named technical account manager and support engineer' },
+                            { icon: <Clock size={28} />, title: 'Priority Support SLAs', desc: 'Guaranteed response times for critical issues' },
+                            { icon: <BookOpen size={28} />, title: 'White-Glove Onboarding', desc: 'Structured implementation with change management' },
+                            { icon: <Code size={28} />, title: 'Training & Enablement', desc: 'Custom training programs for your team' },
+                            { icon: <Calendar size={28} />, title: 'Business Reviews', desc: 'Quarterly strategy sessions to optimize ROI' }
+                        ].map((feature, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.4, delay: i * 0.1 }}
+                                style={{
+                                    background: 'white',
+                                    borderRadius: '16px',
+                                    padding: '24px',
+                                    textAlign: 'center'
+                                }}
+                            >
+                                <div style={{
+                                    width: '48px',
+                                    height: '48px',
+                                    borderRadius: '12px',
+                                    background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    margin: '0 auto 16px',
+                                    color: 'white'
+                                }}>
+                                    {feature.icon}
+                                </div>
+                                <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#1A1A1A', marginBottom: '8px' }}>{feature.title}</h3>
+                                <p style={{ fontSize: '0.875rem', color: '#6B7280', lineHeight: 1.5, margin: 0 }}>{feature.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </Section>
+
+            {/* PRICING CTA */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container" style={{ maxWidth: '900px' }}>
+                    <FloatingCard>
+                        <div style={{
+                            background: 'white',
+                            borderRadius: '24px',
+                            padding: '60px',
+                            boxShadow: '0 10px 40px rgba(255, 107, 53, 0.15)',
+                            border: '2px solid',
+                            borderImage: 'linear-gradient(135deg, #FF6B35, #FF4D6D) 1',
+                            textAlign: 'center'
+                        }}>
+                            <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                                Custom Enterprise Pricing
+                            </h2>
+                            <p style={{ fontSize: '1.125rem', color: '#6B7280', marginBottom: '40px', maxWidth: '600px', margin: '0 auto 40px' }}>
+                                Pricing based on number of users, deployment model, integration complexity, and support requirements.
+                            </p>
+
+                            <div style={{ background: '#FEF3C7', borderRadius: '12px', padding: '20px', marginBottom: '40px' }}>
+                                <p style={{ fontSize: '1rem', color: '#92400E', margin: 0, fontWeight: 600 }}>
+                                    Volume discounts start at 20 users
+                                </p>
+                            </div>
+
+                            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                                <Button size="xl" style={{ background: 'linear-gradient(135deg, #FF6B35 0%, #FF4D6D 100%)', color: 'white', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: 'none' }}>
+                                    Request Enterprise Quote
+                                </Button>
+                                <Button size="xl" style={{ background: 'white', color: '#FF6B35', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: '2px solid #FF6B35' }}>
+                                    <Calendar size={20} style={{ marginRight: '8px' }} /> Schedule Consultation
+                                </Button>
+                            </div>
+                        </div>
+                    </FloatingCard>
+                </div>
+            </Section>
+
+            {/* FINAL CTA */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px', background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)', position: 'relative', overflow: 'hidden' }}>
+                <ParticleBackground count={10} />
+
+                <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '800px' }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: 'white', marginBottom: '24px' }}>
+                            Ready for Enterprise Automation?
+                        </h2>
+                        <p style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.8)', lineHeight: 1.6, marginBottom: '48px' }}>
+                            Schedule a technical consultation to discuss your requirements and see Broker Agentx in your environment.
+                        </p>
+                        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                            <Button size="xl" style={{ background: 'linear-gradient(135deg, #FF6B35 0%, #FF4D6D 100%)', color: 'white', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: 'none' }}>
+                                <Calendar size={20} style={{ marginRight: '8px' }} /> Schedule Consultation
+                            </Button>
+                            <Button size="xl" style={{ background: 'white', color: '#FF6B35', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: 'none' }}>
+                                <Download size={20} style={{ marginRight: '8px' }} /> Download Enterprise Overview
+                            </Button>
+                        </div>
+                    </motion.div>
+                </div>
+            </Section>
+
         </div>
     );
 }

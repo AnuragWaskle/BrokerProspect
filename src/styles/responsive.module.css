@@ -1,0 +1,172 @@
+.heroGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+@media (max-width: 968px) {
+    .heroGrid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+}
+
+@media (max-width: 640px) {
+    .heroGrid {
+        gap: 40px;
+    }
+}
+
+.cardGrid2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+@media (max-width: 768px) {
+    .cardGrid2 {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+.cardGrid3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+@media (max-width: 1024px) {
+    .cardGrid3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .cardGrid3 {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+.cardGrid4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+}
+
+@media (max-width: 1024px) {
+    .cardGrid4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .cardGrid4 {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+.cardGridAuto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+}
+
+@media (max-width: 640px) {
+    .cardGridAuto {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+.logoGrid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+    .logoGrid {
+        gap: 32px;
+    }
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+    .buttonGroup {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .buttonGroup button {
+        width: 100%;
+    }
+}
+
+.sectionPadding {
+    padding-top: 140px;
+    padding-bottom: 100px;
+}
+
+@media (max-width: 968px) {
+    .sectionPadding {
+        padding-top: 100px;
+        padding-bottom: 80px;
+    }
+}
+
+@media (max-width: 640px) {
+    .sectionPadding {
+        padding-top: 80px;
+        padding-bottom: 60px;
+    }
+}
+
+.sectionPaddingLarge {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+@media (max-width: 968px) {
+    .sectionPaddingLarge {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+}
+
+@media (max-width: 640px) {
+    .sectionPaddingLarge {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.hideOnMobile {
+    display: block;
+}
+
+@media (max-width: 968px) {
+    .hideOnMobile {
+        display: none;
+    }
+}
+
+.centerOnMobile {
+    text-align: left;
+}
+
+@media (max-width: 968px) {
+    .centerOnMobile {
+        text-align: center;
+    }
+}

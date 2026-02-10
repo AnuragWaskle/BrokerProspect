@@ -1,160 +1,386 @@
 import { motion } from 'framer-motion';
-import { Check, Users, Shield, BarChart3, Settings, Layers, Zap, ArrowRight, Share2 } from 'lucide-react';
+import { Users, Target, FileCheck, Zap, Shield, Database, Activity, Eye, Settings, ArrowRight, Play } from 'lucide-react';
 import Section from '../../components/ui/Section';
 import Button from '../../components/ui/Button';
-import Badge from '../../components/ui/Badge';
-import Tilt from '../../components/ui/Tilt';
+import FloatingCard from '../../components/ui/FloatingCard';
+import AnimatedCounter from '../../components/ui/AnimatedCounter';
+import OrangeFeatureCard from '../../components/ui/OrangeFeatureCard';
+import ParticleBackground from '../../components/ui/ParticleBackground';
 
 export default function GrowingAgencies() {
     return (
-        <div style={{ background: '#FFFFFF', color: '#111827', minHeight: '100vh' }}>
-            {/* 1. HERO SECTION */}
-            <Section padding="xl" style={{ position: 'relative', overflow: 'hidden', paddingTop: '80px', paddingBottom: '160px', background: '#F0FDFA' }}>
-                <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 1.2fr', gap: '80px', alignItems: 'center' }}>
-                        <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-                            <Badge style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#059669', marginBottom: '24px' }}>
-                                For Scaling Brokerages
-                            </Badge>
-                            <h1 style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: '32px' }}>
-                                Scaling Without <br />
-                                <span style={{ color: '#10B981' }}>The Complexity.</span>
+        <div style={{ background: '#FFFFFF', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
+
+            {/* HERO SECTION */}
+            <Section padding="none" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', paddingBottom: '120px', background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FF4D6D 100%)' }}>
+                <ParticleBackground count={15} />
+
+                <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
+                        {/* Left: Text Content */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <h1 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 800, lineHeight: 1.1, color: 'white', marginBottom: '24px' }}>
+                                Scale Without Sacrificing Quality. <br />
+                                <span style={{ opacity: 0.9 }}>Standardize Without Losing Speed.</span>
                             </h1>
-                            <p style={{ fontSize: '1.25rem', color: '#4B5563', maxWidth: '540px', marginBottom: '48px', lineHeight: 1.6 }}>
-                                Wilson unifies your team's technical workflows, enabling your agency to process 5x more business with your existing headcount.
+                            <p style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.95)', lineHeight: 1.6, marginBottom: '40px', maxWidth: '540px' }}>
+                                Give every producer consistent workflows and professional outputs—regardless of experience level.
                             </p>
-                            <div style={{ display: 'flex', gap: '16px' }}>
-                                <Button size="lg" style={{ background: '#10B981', color: 'white', borderRadius: '100px', border: 'none' }}>
-                                    Scale Your Agency
+                            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                                <Button size="xl" style={{ background: 'white', color: '#FF6B35', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: 'none', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)' }}>
+                                    Get Started
                                 </Button>
-                                <Button variant="outline" size="lg" style={{ borderRadius: '100px' }}>
-                                    Request Corporate Demo
+                                <Button size="xl" style={{ background: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: '1px solid rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(10px)' }}>
+                                    Request Demo
                                 </Button>
+                            </div>
+                        </motion.div>
+
+                        {/* Right: Multi-User Interface */}
+                        <div style={{ position: 'relative' }}>
+                            {[0, 1, 2].map((i) => (
+                                <FloatingCard key={i} delay={0.3 + i * 0.15}>
+                                    <div style={{
+                                        background: 'white',
+                                        borderRadius: '20px',
+                                        padding: '24px',
+                                        boxShadow: '0 10px 40px rgba(0, 0, 0, 0.2)',
+                                        marginBottom: i < 2 ? '16px' : '0',
+                                        transform: `translateX(${i * 20}px)`,
+                                    }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+                                            <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: `linear-gradient(135deg, ${['#FF6B35', '#FF8C42', '#FF4D6D'][i]} 0%, ${['#FF8C42', '#FF4D6D', '#FF6B35'][i]} 100%)` }} />
+                                            <div>
+                                                <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#1A1A1A' }}>Producer {i + 1}</div>
+                                                <div style={{ fontSize: '0.75rem', color: '#6B7280' }}>{['Senior', 'Mid-Level', 'New Hire'][i]}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{ fontSize: '0.75rem', color: '#10B981', fontWeight: 600 }}>✓ Consistent Quality</div>
+                                    </div>
+                                </FloatingCard>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </Section>
+
+            {/* CHALLENGE SECTION */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container" style={{ maxWidth: '900px', textAlign: 'center' }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            Inconsistent Processes Kill Growth
+                        </h2>
+                        <p style={{ fontSize: '1.25rem', color: '#6B7280', lineHeight: 1.6, marginBottom: '60px' }}>
+                            You're scaling your team, but every producer works differently. You need systems that scale—not just more people.
+                        </p>
+                    </motion.div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '24px' }}>
+                        {[
+                            'Every producer works differently',
+                            'New hires take months to ramp',
+                            'Senior producers guard processes',
+                            'Quality varies across accounts',
+                            'Client experience is inconsistent'
+                        ].map((item, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.4, delay: i * 0.1 }}
+                                style={{
+                                    background: 'white',
+                                    border: '2px solid #FEE2E2',
+                                    color: '#DC2626',
+                                    padding: '20px',
+                                    borderRadius: '16px',
+                                    fontSize: '0.95rem',
+                                    fontWeight: 600,
+                                    textAlign: 'center'
+                                }}
+                            >
+                                {item}
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </Section>
+
+            {/* FEATURES SECTION */}
+            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ textAlign: 'center', marginBottom: '80px' }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            Standardized Workflows Across Your Team
+                        </h2>
+                        <p style={{ fontSize: '1.25rem', color: '#6B7280', maxWidth: '700px', margin: '0 auto' }}>
+                            New producers operate at senior-level quality from day one.
+                        </p>
+                    </motion.div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px' }}>
+                        <OrangeFeatureCard
+                            icon={<Target size={32} />}
+                            title="Consistent Prospecting"
+                            description="Every producer uses the same research and outreach process—same quality, every time."
+                            delay={0}
+                        />
+                        <OrangeFeatureCard
+                            icon={<FileCheck size={32} />}
+                            title="Standardized Analysis"
+                            description="Gap analyses and policy reviews follow the same methodology regardless of who's handling the account."
+                            delay={0.1}
+                        />
+                        <OrangeFeatureCard
+                            icon={<Zap size={32} />}
+                            title="Professional Submissions"
+                            description="Applications and narratives maintain consistent quality and professionalism across all producers."
+                            delay={0.2}
+                        />
+                        <OrangeFeatureCard
+                            icon={<Shield size={32} />}
+                            title="Automated Admin"
+                            description="Certificates, letters, and compliance documentation follow agency standards automatically."
+                            delay={0.3}
+                        />
+                    </div>
+                </div>
+            </Section>
+
+            {/* TEAM MANAGEMENT SECTION */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ textAlign: 'center', marginBottom: '80px' }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            Built for Agency Teams
+                        </h2>
+                    </motion.div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '32px' }}>
+                        {[
+                            { icon: <Users size={28} />, title: 'Role-Based Access', desc: 'Control which producers access which workflows and client data' },
+                            { icon: <Database size={28} />, title: 'Shared Knowledge Base', desc: 'Upload appetite guides once—every producer accesses the same information' },
+                            { icon: <Activity size={28} />, title: 'Activity Tracking', desc: 'Monitor workflow usage and productivity across your team' },
+                            { icon: <Eye size={28} />, title: 'Quality Control', desc: 'Review agent outputs before they go to clients or carriers' },
+                            { icon: <Settings size={28} />, title: 'Centralized Admin', desc: 'Manage billing, users, and settings from a single dashboard' }
+                        ].map((feature, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: i * 0.1 }}
+                                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                                style={{
+                                    background: 'white',
+                                    borderRadius: '20px',
+                                    padding: '32px',
+                                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                                    textAlign: 'center'
+                                }}
+                            >
+                                <div style={{
+                                    width: '56px',
+                                    height: '56px',
+                                    borderRadius: '14px',
+                                    background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    margin: '0 auto 20px',
+                                    color: 'white'
+                                }}>
+                                    {feature.icon}
+                                </div>
+                                <h3 style={{ fontSize: '1.125rem', fontWeight: 700, color: '#1A1A1A', marginBottom: '12px' }}>{feature.title}</h3>
+                                <p style={{ fontSize: '0.95rem', color: '#6B7280', lineHeight: 1.5, margin: 0 }}>{feature.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </Section>
+
+            {/* BEFORE/AFTER SECTION */}
+            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ textAlign: 'center', marginBottom: '80px' }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            What Changes for Growing Agencies
+                        </h2>
+                    </motion.div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', maxWidth: '1100px', margin: '0 auto' }}>
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                        >
+                            <div style={{ fontSize: '1.25rem', fontWeight: 700, color: '#6B7280', marginBottom: '32px' }}>Before Broker Agentx</div>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                                {[
+                                    '3-6 months to fully train new producers',
+                                    'Inconsistent quality across accounts',
+                                    'Senior producers spending time on admin work',
+                                    'Growth limited by hiring and training capacity'
+                                ].map((item, i) => (
+                                    <div key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#EF4444', marginTop: '8px', flexShrink: 0 }} />
+                                        <span style={{ color: '#6B7280', lineHeight: 1.6 }}>{item}</span>
+                                    </div>
+                                ))}
                             </div>
                         </motion.div>
 
                         <motion.div
-                            initial={{ opacity: 0, x: 40 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 1 }}
-                            style={{ position: 'relative' }}
+                            initial={{ opacity: 0, x: 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
                         >
-                            <div style={{ position: 'relative', zIndex: 2 }}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop"
-                                    style={{ width: '100%', borderRadius: '24px', boxShadow: '0 50px 100px -20px rgba(0,0,0,0.1)' }}
-                                    alt="Team Collaboration"
-                                />
+                            <div style={{ fontSize: '1.25rem', fontWeight: 700, color: '#FF6B35', marginBottom: '32px' }}>After Broker Agentx</div>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                                {[
+                                    'New producers productive within days',
+                                    'Consistent quality and professionalism across all accounts',
+                                    'Senior producers focused on relationships and complex risks',
+                                    'Scale limited only by client acquisition, not operational capacity'
+                                ].map((item, i) => (
+                                    <div key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10B981', marginTop: '8px', flexShrink: 0 }} />
+                                        <span style={{ color: '#1A1A1A', lineHeight: 1.6, fontWeight: 500 }}>{item}</span>
+                                    </div>
+                                ))}
                             </div>
-
-                            {/* Overlapping Status Elements */}
-                            <motion.div
-                                animate={{ x: [0, 15, 0] }}
-                                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                                style={{
-                                    position: 'absolute', top: '20%', right: '-30px', zIndex: 3,
-                                    background: 'white', padding: '20px', borderRadius: '12px',
-                                    boxShadow: '0 15px 30px rgba(0,0,0,0.08)', borderLeft: '4px solid #10B981'
-                                }}
-                            >
-                                <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6B7280', marginBottom: '4px' }}>TEAM THROUGHPUT</div>
-                                <div style={{ fontSize: '1.5rem', fontWeight: 800 }}>+42% Growth</div>
-                            </motion.div>
-
-                            <motion.div
-                                animate={{ y: [0, -15, 0] }}
-                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                                style={{
-                                    position: 'absolute', bottom: '-20px', left: '10%', zIndex: 3,
-                                    background: '#111827', color: 'white', padding: '16px 24px', borderRadius: '100px',
-                                    display: 'flex', alignItems: 'center', gap: '12px', boxShadow: '0 20px 40px rgba(0,0,0,0.15)'
-                                }}
-                            >
-                                <Share2 size={20} color="#10B981" />
-                                <span style={{ fontWeight: 600 }}>Standardized Review Library</span>
-                            </motion.div>
                         </motion.div>
                     </div>
                 </div>
             </Section>
 
-            {/* 2. OPERATIONAL PILLARS (LIGHT MESH) */}
-            <Section padding="xl" style={{ paddingTop: '160px', paddingBottom: '160px' }}>
-                <div className="container">
-                    <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 100px' }}>
-                        <h2 style={{ fontSize: '3.5rem', fontWeight: 900, marginBottom: '24px' }}>Unified Operations.</h2>
-                        <p style={{ fontSize: '1.25rem', opacity: 0.6 }}>Standardize your agency's knowledge. Ensure every broker operates with the same technical precision and institutional insight.</p>
-                    </div>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '40px' }}>
-                        <ScaleCard icon={<Users />} title="Team Collab" desc="Unified views for brokers and account managers." color="#10B981" />
-                        <ScaleCard icon={<Layers />} title="Process Sync" desc="Automated workflows that follow your specific corporate SOPs." color="#3B82F6" />
-                        <ScaleCard icon={<BarChart3 />} title="Revenue Insights" desc="Macro dashboard for leadership to track agency wide production." color="#F59E0B" />
-                    </div>
-                </div>
-            </Section>
-
-            {/* 3. CASE STUDY FOCUS */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '160px', paddingBottom: '160px' }}>
-                <div className="container">
-                    <div style={{ background: 'white', borderRadius: '48px', padding: '100px', border: '1px solid #E5E7EB', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '100px', alignItems: 'center', boxShadow: '0 40px 120px -40px rgba(0,0,0,0.05)' }}>
-                        <div>
-                            <Badge color="green" style={{ marginBottom: '24px' }}>The Result</Badge>
-                            <h2 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '32px' }}>"It's like having a <br /> second brain for <br /> the entire team."</h2>
-                            <p style={{ fontSize: '1.25rem', color: '#4B5563', marginBottom: '40px', fontStyle: 'italic' }}>
-                                "Wilson allowed our producers to focus on complex account strategy while the system handled the administrative heavy lifting. Our close rates have never been higher."
-                            </p>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                                <div style={{ width: 64, height: 64, borderRadius: '50%', background: '#10B981', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '1.5rem', fontWeight: 900 }}>D</div>
-                                <div>
-                                    <div style={{ fontWeight: 800, color: '#111827' }}>David Chen</div>
-                                    <div style={{ color: '#6B7280', fontSize: '0.9rem' }}>Principal at Nexus Brokers</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style={{ position: 'relative' }}>
-                            <div style={{ display: 'grid', gap: '24px' }}>
-                                <StatCard value="40%" label="Reduction in Admin" />
-                                <StatCard value="2x" label="Submission Volume" />
-                                <StatCard value="Zero" label="Headcount Increase" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </Section>
-
-            {/* 4. FINAL CTA */}
-            <Section padding="xl" style={{ textAlign: 'center', paddingTop: '160px', paddingBottom: '160px' }}>
+            {/* PRICING SECTION */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
                 <div className="container" style={{ maxWidth: '800px' }}>
-                    <h2 style={{ fontSize: '3.5rem', fontWeight: 900, marginBottom: '32px' }}>Build for a scalable future.</h2>
-                    <Button size="xl" style={{ background: '#10B981', color: 'white', borderRadius: '100px', padding: '20px 60px' }}>
-                        Book Your Team Training
-                    </Button>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ textAlign: 'center', marginBottom: '60px' }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            Team Pricing
+                        </h2>
+                    </motion.div>
+
+                    <FloatingCard>
+                        <div style={{
+                            background: 'white',
+                            borderRadius: '24px',
+                            padding: '60px',
+                            boxShadow: '0 10px 40px rgba(255, 107, 53, 0.15)',
+                            border: '2px solid',
+                            borderImage: 'linear-gradient(135deg, #FF6B35, #FF4D6D) 1',
+                            textAlign: 'center'
+                        }}>
+                            <div style={{ fontSize: '1rem', fontWeight: 600, color: '#FF6B35', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '16px' }}>Growing Agency</div>
+                            <div style={{ fontSize: '4rem', fontWeight: 800, color: '#1A1A1A', marginBottom: '8px' }}>
+                                $<AnimatedCounter value={99} />
+                            </div>
+                            <div style={{ fontSize: '1.125rem', color: '#6B7280', marginBottom: '32px' }}>per user/month or $999/year (save $189)</div>
+
+                            <div style={{ background: '#FEF3C7', borderRadius: '12px', padding: '16px', marginBottom: '32px' }}>
+                                <p style={{ fontSize: '0.95rem', color: '#92400E', margin: 0, fontWeight: 600 }}>
+                                    Volume discounts available for teams of 10+ users
+                                </p>
+                            </div>
+
+                            <div style={{ textAlign: 'left', marginBottom: '40px' }}>
+                                {[
+                                    'Full platform access for every team member',
+                                    'Shared knowledge base and documentation',
+                                    'Centralized administration and reporting',
+                                    'Dedicated onboarding and training'
+                                ].map((feature, i) => (
+                                    <div key={i} style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '12px' }}>
+                                        <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'linear-gradient(135deg, #FF6B35, #FF8C42)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                                            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'white' }} />
+                                        </div>
+                                        <span style={{ color: '#4B5563' }}>{feature}</span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div style={{ display: 'flex', gap: '12px' }}>
+                                <Button size="xl" style={{ background: 'linear-gradient(135deg, #FF6B35 0%, #FF4D6D 100%)', color: 'white', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: 'none', flex: 1 }}>
+                                    Request Team Demo
+                                </Button>
+                                <Button size="xl" style={{ background: 'white', color: '#FF6B35', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: '2px solid #FF6B35', flex: 1 }}>
+                                    Contact Sales
+                                </Button>
+                            </div>
+                        </div>
+                    </FloatingCard>
                 </div>
             </Section>
-        </div>
-    );
-}
 
-function ScaleCard({ icon, title, desc, color }) {
-    return (
-        <Tilt style={{ display: 'block' }}>
-            <div style={{ background: 'white', padding: '60px 40px', borderRadius: '32px', border: '1px solid #E5E7EB', boxShadow: '0 20px 40px rgba(0,0,0,0.02)' }}>
-                <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: `${color}11`, color: color, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '32px' }}>
-                    {icon}
+            {/* FINAL CTA */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px', background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)', position: 'relative', overflow: 'hidden' }}>
+                <ParticleBackground count={10} />
+
+                <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '800px' }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: 'white', marginBottom: '24px' }}>
+                            Scale Your Agency the Right Way
+                        </h2>
+                        <p style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.8)', lineHeight: 1.6, marginBottom: '48px' }}>
+                            See how growing agencies use Broker Agentx to standardize workflows and maintain quality at scale.
+                        </p>
+                        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                            <Button size="xl" style={{ background: 'linear-gradient(135deg, #FF6B35 0%, #FF4D6D 100%)', color: 'white', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: 'none' }}>
+                                Request Demo
+                            </Button>
+                            <Button size="xl" style={{ background: 'white', color: '#FF6B35', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: 'none' }}>
+                                Contact Sales
+                            </Button>
+                        </div>
+                    </motion.div>
                 </div>
-                <h3 style={{ fontSize: '1.75rem', fontWeight: 800, marginBottom: '16px' }}>{title}</h3>
-                <p style={{ color: '#4B5563', lineHeight: 1.6 }}>{desc}</p>
-            </div>
-        </Tilt>
-    );
-}
+            </Section>
 
-function StatCard({ value, label }) {
-    return (
-        <div style={{ background: '#FFFFFF', padding: '32px 40px', borderRadius: '24px', border: '1px solid #E5E7EB', boxShadow: '0 10px 20px rgba(0,0,0,0.02)', textAlign: 'center' }}>
-            <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#10B981' }}>{value}</div>
-            <div style={{ fontWeight: 700, opacity: 0.6, fontSize: '0.9rem', textTransform: 'uppercase' }}>{label}</div>
         </div>
     );
 }

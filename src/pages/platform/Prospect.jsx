@@ -1,300 +1,378 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Search, Database, UserCheck, Phone, Mail, ArrowRight, Target, Filter, Zap, CheckCircle2, Star, TrendingUp, ShieldCheck } from 'lucide-react';
-import Button from '../../components/ui/Button';
+import { motion } from 'framer-motion';
+import { Search, Users, Mail, TrendingUp, ArrowRight, Play, CheckCircle } from 'lucide-react';
 import Section from '../../components/ui/Section';
-import Badge from '../../components/ui/Badge';
-import Tilt from '../../components/ui/Tilt';
-import { ThreeDGlobe, LeadBlock } from '../../components/ui/ThreeDComponents';
-
-// --- Custom 3D Elements for Prospect ---
-
-// 3D Radar Wave
-const RadarWave = () => (
-    <div style={{ position: 'relative', width: 300, height: 300, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {[0, 1, 2].map((i) => (
-            <motion.div
-                key={i}
-                initial={{ opacity: 0.5, scale: 0 }}
-                animate={{ opacity: 0, scale: 2 }}
-                transition={{ duration: 3, delay: i, repeat: Infinity, ease: "easeOut" }}
-                style={{
-                    position: 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    border: '2px solid #4F46E5',
-                    borderRadius: '50%',
-                }}
-            />
-        ))}
-        <motion.div
-            style={{ zIndex: 10, background: 'white', padding: 20, borderRadius: '50%', boxShadow: '0 0 30px rgba(79, 70, 229, 0.3)' }}
-        >
-            <Database size={40} color="#4F46E5" />
-        </motion.div>
-    </div>
-);
-
-// 3D Performance Gauge
-const PerformanceGauge = ({ value = 85 }) => (
-    <div style={{ position: 'relative', width: 200, height: 200, perspective: '1000px' }}>
-        <svg width="200" height="200" viewBox="0 0 100 100" style={{ transform: 'rotate(-90deg)' }}>
-            <circle cx="50" cy="50" r="45" fill="none" stroke="#E5E7EB" strokeWidth="10" />
-            <motion.circle
-                cx="50" cy="50" r="45" fill="none" stroke="#10B981" strokeWidth="10"
-                strokeDasharray="283"
-                initial={{ strokeDashoffset: 283 }}
-                whileInView={{ strokeDashoffset: 283 - (283 * value) / 100 }}
-                transition={{ duration: 2, ease: "easeOut" }}
-            />
-        </svg>
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontSize: '2.5rem', fontWeight: 800, color: '#111827' }}>{value}%</span>
-            <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6B7280', textTransform: 'uppercase' }}>Match Rate</span>
-        </div>
-    </div>
-);
+import Button from '../../components/ui/Button';
+import FloatingCard from '../../components/ui/FloatingCard';
+import ParticleBackground from '../../components/ui/ParticleBackground';
+import Floating3DShape, { ScrollReveal3D, Parallax3DElement } from '../../components/ui/3DAnimations';
+import AnimatedBlob, { PulsingOrb } from '../../components/ui/AnimatedBlob';
+import styles from '../../styles/responsive.module.css';
 
 export default function Prospect() {
-    const containerRef = useRef(null);
-    const { scrollYProgress: rawScrollY } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"]
-    });
-
-    const scrollYProgress = useSpring(rawScrollY, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
-
-    const heroOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
-    const heroScale = useTransform(scrollYProgress, [0, 0.1], [1, 0.95]);
-
     return (
-        <div style={{ background: '#F8FAFC' }}>
+        <div style={{ background: '#FFFFFF', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
 
-            {/* 1. COVER HERO SECTION WITH OVERLAP */}
-            <div style={{ position: 'relative', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                <div style={{
-                    position: 'absolute', inset: 0,
-                    backgroundImage: 'url(https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2000&auto=format&fit=crop)',
-                    backgroundSize: 'cover', backgroundPosition: 'center',
-                    zIndex: 0
-                }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)', zIndex: 1 }} />
+            {/* HERO SECTION - Left Text, Right Animated Visual */}
+            <Section padding="none" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', paddingBottom: '100px', background: 'white' }}>
+                {/* Floating 3D Background Elements */}
+                <Floating3DShape shape="circle" size={150} top="10%" left="5%" delay={0} opacity={0.1} />
+                <Floating3DShape shape="rounded" size={100} top="60%" right="8%" delay={1.5} opacity={0.12} color="linear-gradient(135deg, #FF8C42 0%, #FF4D6D 100%)" />
+                <AnimatedBlob size={300} top="-10%" right="-5%" opacity={0.08} />
+                <PulsingOrb size={80} bottom="20%" left="10%" delay={2} />
 
-                <motion.div
-                    style={{ position: 'relative', zIndex: 10, textAlign: 'center', color: 'white', opacity: heroOpacity, scale: heroScale }}
-                    className="container"
-                >
-                    <Badge style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: 'none', marginBottom: 24 }}>Module 01: Prospect</Badge>
-                    <h1 style={{ fontSize: 'clamp(3.5rem, 8vw, 6rem)', fontWeight: 900, lineHeight: 0.9, marginBottom: 32, letterSpacing: '-0.02em' }}>
-                        THE <span style={{ color: '#818CF8' }}>HUNT</span> <br /> IS OVER.
-                    </h1>
-                    <p style={{ fontSize: '1.5rem', opacity: 0.9, maxWidth: 600, margin: '0 auto 40px' }}>
-                        Wilson identifies your most profitable leads before they even know they need you.
-                    </p>
-                    <Button size="xl" style={{ background: 'white', color: 'black', padding: '20px 48px', borderRadius: 100 }}>
-                        Activate Scout <ArrowRight style={{ marginLeft: 8 }} />
-                    </Button>
-                </motion.div>
+                <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+                    <div className={styles.heroGrid}>
+                        {/* Left: Text Content */}
+                        <ScrollReveal3D direction="left">
+                            <motion.div
+                                initial={{ opacity: 0, x: -30 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.8 }}
+                            >
+                                <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#FF6B35', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '20px' }}>
+                                    AI-Powered Prospecting
+                                </div>
+                                <h1 style={{ fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: 800, lineHeight: 1.1, color: '#1A1A1A', marginBottom: '24px' }}>
+                                    Automate Prospecting. <br />
+                                    Start Selling Faster.
+                                </h1>
+                                <p style={{ fontSize: '1.25rem', color: '#6B7280', lineHeight: 1.6, marginBottom: '40px', maxWidth: '520px' }}>
+                                    Find companies, identify decision-makers, and generate personalized outreach—all from a single prompt.
+                                </p>
+                                <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                                    <Button size="xl" style={{ background: 'linear-gradient(135deg, #FF6B35 0%, #FF4D6D 100%)', color: 'white', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: 'none' }}>
+                                        Get Started
+                                    </Button>
+                                    <Button size="xl" style={{ background: 'white', color: '#FF6B35', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: '2px solid #FF6B35' }}>
+                                        <Play size={20} style={{ marginRight: '8px' }} /> Watch Demo
+                                    </Button>
+                                </div>
+                            </motion.div>
+                        </ScrollReveal3D>
 
-                {/* Overlapping Content Start Indicator */}
-                <motion.div
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ repeat: Infinity, duration: 2 }}
-                    style={{ position: 'absolute', bottom: 40, left: '50%', x: '-50%', zIndex: 10, color: 'white' }}
-                >
-                    <div style={{ width: 2, height: 60, background: 'linear-gradient(to bottom, white, transparent)' }} />
-                </motion.div>
-            </div>
+                        {/* Right: Animated Floating Card */}
+                        <Parallax3DElement speed={-0.3}>
+                            <div style={{ position: 'relative' }}>
+                                <FloatingCard delay={0.3}>
+                                    <div style={{
+                                        background: 'white',
+                                        borderRadius: '24px',
+                                        padding: '32px',
+                                        boxShadow: '0 20px 60px rgba(255, 107, 53, 0.15)',
+                                        border: '2px solid rgba(255, 107, 53, 0.1)',
+                                        position: 'relative'
+                                    }}>
+                                        {/* Gradient accent bar */}
+                                        <div style={{
+                                            position: 'absolute',
+                                            top: 0,
+                                            left: 0,
+                                            right: 0,
+                                            height: '6px',
+                                            background: 'linear-gradient(90deg, #FF6B35 0%, #FF4D6D 100%)',
+                                            borderRadius: '24px 24px 0 0'
+                                        }} />
 
-            {/* 2. SPLIT-SCREEN INTERACTIVE SECTION */}
-            <div ref={containerRef} style={{ display: 'flex', minHeight: '400vh', position: 'relative' }}>
-                {/* Left Side: Sticky Content */}
-                <div style={{ width: '50%', position: 'sticky', top: 0, height: '100vh', display: 'flex', alignItems: 'center', padding: '0 8%' }}>
-                    <div style={{ maxWidth: 500, width: '100%' }}>
-                        <SceneContent scrollYProgress={scrollYProgress} />
-                    </div>
-                </div>
+                                        <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#FF6B35', marginBottom: '16px' }}>Prospect Search</div>
+                                        <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#1A1A1A', marginBottom: '24px' }}>
+                                            "Find tech companies in Toronto with 50-200 employees"
+                                        </div>
 
-                {/* Right Side: Scrolling 3D Visuals */}
-                <div style={{ width: '50%', position: 'relative' }}>
-                    <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'sticky', top: 0 }}>
-                        <SceneVisuals scrollYProgress={scrollYProgress} />
-                    </div>
-                    {/* Spacer divs to drive scroll */}
-                    <div style={{ height: '100vh' }} />
-                    <div style={{ height: '100vh' }} />
-                    <div style={{ height: '100vh' }} />
-                    <div style={{ height: '100vh' }} />
-                </div>
-            </div>
+                                        {/* Animated Results */}
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                            {[
+                                                { name: 'Acme Software Inc.', role: 'CEO: John Smith', status: 'Email found' },
+                                                { name: 'TechCorp Solutions', role: 'CFO: Sarah Johnson', status: 'LinkedIn verified' },
+                                                { name: 'DataFlow Systems', role: 'Risk Manager: Mike Chen', status: 'Phone verified' }
+                                            ].map((company, i) => (
+                                                <motion.div
+                                                    key={i}
+                                                    initial={{ opacity: 0, x: -20 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    transition={{ duration: 0.4, delay: 0.8 + i * 0.2 }}
+                                                    style={{
+                                                        background: '#F9FAFB',
+                                                        borderRadius: '12px',
+                                                        padding: '16px',
+                                                        border: '1px solid #E5E7EB'
+                                                    }}
+                                                >
+                                                    <div style={{ fontSize: '0.95rem', fontWeight: 600, color: '#1A1A1A', marginBottom: '4px' }}>{company.name}</div>
+                                                    <div style={{ fontSize: '0.85rem', color: '#6B7280', marginBottom: '8px' }}>{company.role}</div>
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                                        <CheckCircle size={14} style={{ color: '#10B981' }} />
+                                                        <span style={{ fontSize: '0.75rem', color: '#10B981', fontWeight: 600 }}>{company.status}</span>
+                                                    </div>
+                                                </motion.div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </FloatingCard>
 
-            {/* 3. FINAL CTA */}
-            <Section padding="xl" style={{ background: 'white', paddingTop: '180px', paddingBottom: '160px' }}>
-                <div className="container" style={{ textAlign: 'center' }}>
-                    <div style={{ display: 'inline-flex', gap: 12, marginBottom: 32 }}>
-                        {[...Array(5)].map((_, i) => <Star key={i} size={24} fill="#F59E0B" color="#F59E0B" />)}
-                    </div>
-                    <h2 style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: 24 }}>Ready to out-prospect everyone?</h2>
-                    <p style={{ fontSize: '1.25rem', color: '#6B7280', marginBottom: 48, maxWidth: 600, margin: '0 auto 48px' }}>
-                        Start your 14-day trial of the Prospecting module and see the difference AI intelligence makes.
-                    </p>
-                    <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
-                        <Button size="lg">Get Started Free</Button>
-                        <Button variant="outline" size="lg">Contact Sales</Button>
+                                {/* Floating accent elements */}
+                                <motion.div
+                                    animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+                                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                    style={{
+                                        position: 'absolute',
+                                        top: '-20px',
+                                        right: '-20px',
+                                        width: '80px',
+                                        height: '80px',
+                                        borderRadius: '20px',
+                                        background: 'linear-gradient(135deg, #FF8C42 0%, #FF4D6D 100%)',
+                                        opacity: 0.2,
+                                        zIndex: -1
+                                    }}
+                                />
+                            </div>
+                        </Parallax3DElement>
                     </div>
                 </div>
             </Section>
-        </div>
-    );
-}
 
-// Scene Content Controller
-function SceneContent({ scrollYProgress }) {
-    return (
-        <div style={{ position: 'relative', height: '300px' }}>
-            <Step
-                scrollYProgress={scrollYProgress}
-                range={[0.1, 0.3]}
-                title="Global Market Scan"
-                badge="Step 01"
-                badgeColor="blue"
-                description="Wilson scans over 100 million corporate databases, social signals, and public records to build a 360° view of the market."
-            />
-            <Step
-                scrollYProgress={scrollYProgress}
-                range={[0.4, 0.6]}
-                title="AI Lead Scoring"
-                badge="Step 02"
-                badgeColor="purple"
-                description="Every business is assigned a 'Propensity Score' based on their current carrier, revenue growth, and historical risk profile."
-            />
-            <Step
-                scrollYProgress={scrollYProgress}
-                range={[0.7, 0.9]}
-                title="Verified Contact Info"
-                badge="Step 03"
-                badgeColor="emerald"
-                description="Once a high-intent lead is found, Wilson unlocks verified direct-dials and emails for C-suite decision makers."
-            />
-        </div>
-    );
-}
-
-// Scene Visuals Controller
-function SceneVisuals({ scrollYProgress }) {
-    return (
-        <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            {/* Visual 1: Globe */}
-            <VisualStep scrollYProgress={scrollYProgress} range={[0.1, 0.35]}>
-                <ThreeDGlobe size={350} />
-                <div style={{ position: 'absolute', top: '10%', left: '10%' }}>
-                    <LeadBlock delay={0} color="#818CF8" />
+            {/* LOGO STRIP */}
+            <Section padding="md" style={{ background: '#F9FAFB', paddingTop: '60px', paddingBottom: '60px', position: 'relative', overflow: 'hidden' }}>
+                <Floating3DShape shape="square" size={120} top="15%" right="5%" delay={0.5} opacity={0.08} />
+                <Floating3DShape shape="circle" size={90} bottom="10%" left="3%" delay={2} opacity={0.1} />
+                <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
+                    <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#6B7280', marginBottom: '32px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        Trusted by brokers worldwide
+                    </div>
+                    <div className={styles.logoGrid} style={{ opacity: 0.5 }}>
+                        {['Apollo', 'LinkedIn', 'Mailchimp', 'Salesforce'].map((logo, i) => (
+                            <div key={i} style={{ fontSize: '1.25rem', fontWeight: 700, color: '#9CA3AF' }}>{logo}</div>
+                        ))}
+                    </div>
                 </div>
-                <div style={{ position: 'absolute', bottom: '20%', right: '15%' }}>
-                    <LeadBlock delay={1} color="#C084FC" />
-                </div>
-            </VisualStep>
+            </Section>
 
-            {/* Visual 2: Radar & Gauge */}
-            <VisualStep scrollYProgress={scrollYProgress} range={[0.35, 0.65]}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 60 }}>
-                    <RadarWave />
-                    <PerformanceGauge value={98} />
-                </div>
-            </VisualStep>
-
-            {/* Visual 3: Tilt Cards */}
-            <VisualStep scrollYProgress={scrollYProgress} range={[0.65, 0.95]}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-                    <Tilt intensity={20}>
-                        <div style={{ background: 'white', padding: 24, borderRadius: 20, boxShadow: '0 10px 30px rgba(0,0,0,0.05)', display: 'flex', alignItems: 'center', gap: 16, width: 400 }}>
-                            <div style={{ width: 50, height: 50, borderRadius: '50%', background: '#F3F4F6' }} />
-                            <div>
-                                <h4 style={{ fontWeight: 700 }}>Sarah Jenkins</h4>
-                                <p style={{ fontSize: '0.85rem', color: '#6B7280' }}>CEO, Global Logistics Corp</p>
-                            </div>
-                            <div style={{ marginLeft: 'auto', color: '#10B981' }}><Phone size={20} /></div>
+            {/* HOW IT WORKS - Step by Step */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ textAlign: 'center', marginBottom: '80px' }}
+                    >
+                        <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#FF6B35', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '16px' }}>
+                            How It Works
                         </div>
-                    </Tilt>
-                    <motion.div initial={{ x: 50, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ delay: 0.2 }}>
-                        <Tilt intensity={20}>
-                            <div style={{ background: 'white', padding: 24, borderRadius: 20, boxShadow: '0 10px 30px rgba(0,0,0,0.05)', display: 'flex', alignItems: 'center', gap: 16, width: 400 }}>
-                                <div style={{ width: 50, height: 50, borderRadius: '50%', background: '#F3F4F6' }} />
-                                <div>
-                                    <h4 style={{ fontWeight: 700 }}>Michael Chen</h4>
-                                    <p style={{ fontSize: '0.85rem', color: '#6B7280' }}>Risk Manager, TechSupply</p>
-                                </div>
-                                <div style={{ marginLeft: 'auto', color: '#10B981' }}><Mail size={20} /></div>
-                            </div>
-                        </Tilt>
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            From Company Name to <br />Ready-to-Send Outreach in Minutes
+                        </h2>
+                    </motion.div>
+
+                    <div className={styles.cardGrid4}>
+                        {[
+                            { step: '1', icon: <Search size={28} />, title: 'Input a Company', desc: 'Give Broker Agentx a company name, domain, or industry criteria.' },
+                            { step: '2', icon: <TrendingUp size={28} />, title: 'Automated Enrichment', desc: 'Agents pull data from Apollo, LinkedIn, and public sources to build complete profiles.' },
+                            { step: '3', icon: <Users size={28} />, title: 'Decision-Maker ID', desc: 'Automatically identifies and extracts contact information for key executives.' },
+                            { step: '4', icon: <Mail size={28} />, title: 'Personalized Outreach', desc: 'Generates customized email sequences based on company profile and identified risks.' }
+                        ].map((item, i) => (
+                            <ScrollReveal3D key={i} delay={i * 0.1} direction="up">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: i * 0.15 }}
+                                    style={{ position: 'relative' }}
+                                >
+                                    {/* Step number badge */}
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: '-12px',
+                                        left: '24px',
+                                        width: '32px',
+                                        height: '32px',
+                                        borderRadius: '50%',
+                                        background: 'linear-gradient(135deg, #FF6B35 0%, #FF4D6D 100%)',
+                                        color: 'white',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        fontSize: '0.875rem',
+                                        fontWeight: 700,
+                                        zIndex: 1
+                                    }}>
+                                        {item.step}
+                                    </div>
+
+                                    <div style={{
+                                        background: 'white',
+                                        borderRadius: '20px',
+                                        padding: '40px 28px 28px',
+                                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                                        border: '2px solid rgba(255, 107, 53, 0.1)',
+                                        height: '100%'
+                                    }}>
+                                        <div style={{
+                                            width: '56px',
+                                            height: '56px',
+                                            borderRadius: '14px',
+                                            background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            marginBottom: '20px',
+                                            color: 'white'
+                                        }}>
+                                            {item.icon}
+                                        </div>
+                                        <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#1A1A1A', marginBottom: '12px' }}>{item.title}</h3>
+                                        <p style={{ fontSize: '0.95rem', color: '#6B7280', lineHeight: 1.6, margin: 0 }}>{item.desc}</p>
+                                    </div>
+                                </motion.div>
+                            </ScrollReveal3D>
+                        ))}
+                    </div>
+                </div>
+            </Section>
+
+            {/* WHAT YOU GET - Feature Grid */}
+            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ textAlign: 'center', marginBottom: '80px' }}
+                    >
+                        <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#FF6B35', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '16px' }}>
+                            Complete Intelligence
+                        </div>
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            Everything You Need to Close
+                        </h2>
+                    </motion.div>
+
+                    <div className={styles.cardGridAuto}>
+                        {[
+                            { title: 'Company Profile', desc: 'Name, industry, size, revenue, NAICS code, operations summary' },
+                            { title: 'Risk Exposure Analysis', desc: 'Industry-specific risks, coverage gaps, operational exposures' },
+                            { title: 'Decision-Maker Contacts', desc: 'Verified emails and phone numbers for key executives' },
+                            { title: 'Personalized Outreach', desc: 'Email templates tailored to company profile and identified risks' },
+                            { title: 'LinkedIn Integration', desc: 'Automated connection requests and messaging campaigns' },
+                            { title: 'Campaign Automation', desc: 'Schedule and execute multi-touch campaigns via integrated email tools' }
+                        ].map((feature, i) => (
+                            <ScrollReveal3D key={i} delay={i * 0.08} direction="up">
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.4, delay: i * 0.08 }}
+                                    whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                                    style={{
+                                        background: 'white',
+                                        borderRadius: '16px',
+                                        padding: '28px',
+                                        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)',
+                                        border: '1px solid rgba(255, 107, 53, 0.1)',
+                                        cursor: 'pointer'
+                                    }}
+                                >
+                                    <h3 style={{ fontSize: '1.125rem', fontWeight: 700, color: '#1A1A1A', marginBottom: '12px' }}>{feature.title}</h3>
+                                    <p style={{ fontSize: '0.95rem', color: '#6B7280', lineHeight: 1.6, margin: 0 }}>{feature.desc}</p>
+                                </motion.div>
+                            </ScrollReveal3D>
+                        ))}
+                    </div>
+                </div>
+            </Section>
+
+            {/* INTEGRATIONS */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px', position: 'relative', overflow: 'hidden' }}>
+                <AnimatedBlob size={250} bottom="-10%" left="-5%" opacity={0.06} delay={1} />
+                <Floating3DShape shape="triangle" size={110} top="20%" right="10%" delay={1.5} opacity={0.09} />
+                <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '900px', textAlign: 'center' }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#FF6B35', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '16px' }}>
+                            Integrations
+                        </div>
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', marginBottom: '24px' }}>
+                            Connected to Your Growth Stack
+                        </h2>
+                        <p style={{ fontSize: '1.125rem', color: '#6B7280', marginBottom: '60px' }}>
+                            Seamlessly integrate with the tools you already use
+                        </p>
+                    </motion.div>
+
+                    <div className={styles.cardGrid4}>
+                        {[
+                            { name: 'Apollo', desc: 'Company and contact enrichment' },
+                            { name: 'LinkedIn', desc: 'Automated outreach and connections' },
+                            { name: 'Mailchimp', desc: 'Email campaign execution' },
+                            { name: 'Your CRM', desc: 'Automatic contact creation' }
+                        ].map((integration, i) => (
+                            <ScrollReveal3D key={i} delay={i * 0.1} direction="up">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                                    whileHover={{
+                                        y: -8,
+                                        rotateY: 5,
+                                        rotateX: -3,
+                                        boxShadow: '0 20px 40px rgba(255, 107, 53, 0.2)',
+                                        transition: { duration: 0.3 }
+                                    }}
+                                    style={{
+                                        background: 'white',
+                                        borderRadius: '16px',
+                                        padding: '24px',
+                                        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.06)',
+                                        textAlign: 'center'
+                                    }}
+                                >
+                                    <div style={{ fontSize: '1.25rem', fontWeight: 700, color: '#1A1A1A', marginBottom: '8px' }}>{integration.name}</div>
+                                    <div style={{ fontSize: '0.875rem', color: '#6B7280' }}>{integration.desc}</div>
+                                </motion.div>
+                            </ScrollReveal3D>
+                        ))}
+                    </div>
+                </div>
+            </Section>
+
+            {/* FINAL CTA */}
+            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px', background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FF4D6D 100%)', position: 'relative', overflow: 'hidden' }}>
+                <ParticleBackground count={15} />
+                <Floating3DShape shape="circle" size={200} top="10%" left="5%" opacity={0.15} blur={3} />
+                <Floating3DShape shape="rounded" size={150} bottom="15%" right="8%" delay={1} opacity={0.12} blur={3} />
+
+                <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '800px' }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: 'white', marginBottom: '24px' }}>
+                            Start Prospecting Smarter
+                        </h2>
+                        <p style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.95)', lineHeight: 1.6, marginBottom: '48px' }}>
+                            See how Broker Agentx builds complete company profiles and generates outreach in under 3 minutes.
+                        </p>
+                        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                            <Button size="xl" style={{ background: 'white', color: '#FF6B35', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: 'none' }}>
+                                <Play size={20} style={{ marginRight: '8px' }} /> Watch Demo
+                            </Button>
+                            <Button size="xl" style={{ background: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: '1px solid rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(10px)' }}>
+                                Get Started <ArrowRight size={20} style={{ marginLeft: '8px' }} />
+                            </Button>
+                        </div>
                     </motion.div>
                 </div>
-            </VisualStep>
+            </Section>
+
         </div>
-    );
-}
-
-// Helpers
-function Step({ scrollYProgress, range, title, description, badge, badgeColor }) {
-    const opacity = useTransform(scrollYProgress,
-        [range[0] - 0.05, range[0], range[1], range[1] + 0.05],
-        [0, 1, 1, 0]
-    );
-    const y = useTransform(scrollYProgress,
-        [range[0] - 0.05, range[0], range[1], range[1] + 0.05],
-        [20, 0, 0, -20]
-    );
-
-    return (
-        <motion.div
-            style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                opacity,
-                y,
-                pointerEvents: 'none'
-            }}
-        >
-            <div style={{ pointerEvents: 'auto' }}>
-                <Badge color={badgeColor}>{badge}</Badge>
-                <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, margin: '16px 0 24px', lineHeight: 1.1, color: '#111827' }}>{title}</h2>
-                <p style={{ fontSize: '1.125rem', color: '#4B5563', lineHeight: 1.6 }}>{description}</p>
-            </div>
-        </motion.div>
-    );
-}
-
-function VisualStep({ children, scrollYProgress, range }) {
-    const opacity = useTransform(scrollYProgress,
-        [range[0] - 0.05, range[0], range[1], range[1] + 0.05],
-        [0, 1, 1, 0]
-    );
-    const scale = useTransform(scrollYProgress,
-        [range[0] - 0.05, range[0], range[1], range[1] + 0.05],
-        [0.8, 1, 1, 0.8]
-    );
-
-    return (
-        <motion.div
-            style={{
-                position: 'absolute',
-                opacity,
-                scale,
-                pointerEvents: 'none'
-            }}
-        >
-            <div style={{ pointerEvents: 'auto' }}>
-                {children}
-            </div>
-        </motion.div>
     );
 }
