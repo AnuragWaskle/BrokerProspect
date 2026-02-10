@@ -1,633 +1,400 @@
+import { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Play, ArrowRight, MessageSquare, FileText, MapPin, Phone, Bell, Box, Hexagon, Circle } from 'lucide-react';
+import {
+    Search, Users, Mail, TrendingUp, ArrowRight, Play, CheckCircle,
+    MessageSquare, Zap, Shield, FileCheck, Calculator, FileText,
+    Globe, Cpu, Database, BarChart3, Lock, Sparkles, Award
+} from 'lucide-react';
+
 import Section from '../components/ui/Section';
 import Button from '../components/ui/Button';
-import Marquee from '../components/ui/Marquee';
 import Badge from '../components/ui/Badge';
-import ParallaxSection from '../components/ui/ParallaxSection';
-import { GradientText, RevealText } from '../components/ui/AnimatedText';
-import { AnimatedGlobe, AnimatedShield, AnimatedChart, AnimatedRocket, AnimatedServer } from '../components/ui/AnimatedIcons';
-import { IsometricNode, WaxSeal, DocumentPiece, SecurityRing } from '../components/ui/ThreeDComponents';
-import Tilt from '../components/ui/Tilt';
-
-// Decorative 3D-like Floating Element
-const Floating3DElement = ({ icon: Icon, color, size, top, left, delay, rotate }) => (
-    <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{
-            opacity: [0.1, 0.3, 0.1],
-            scale: 1,
-            y: [0, -40, 0],
-            rotate: rotate ? [0, 360] : 0
-        }}
-        transition={{
-            duration: 8,
-            delay,
-            repeat: Infinity,
-            ease: "easeInOut"
-        }}
-        style={{
-            position: 'absolute',
-            top,
-            left,
-            zIndex: 1,
-            color,
-            filter: 'blur(1px)'
-        }}
-    >
-        <Icon size={size} strokeWidth={1} />
-    </motion.div>
-);
-
-// Floating Glass Card Component
-const GlassCard = ({ children, x, y, delay }) => (
-    <motion.div
-        initial={{ opacity: 0, y: y + 20, x: x }}
-        animate={{ opacity: 1, y: y, x: x }}
-        transition={{ duration: 0.8, delay, ease: "easeOut" }}
-        style={{
-            position: 'absolute',
-            background: 'rgba(255, 255, 255, 0.1)',
-            backdropFilter: 'blur(16px)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            borderRadius: '16px',
-            padding: '12px 16px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
-            zIndex: 20
-        }}
-    >
-        {children}
-    </motion.div>
-);
-
-// Mini Market Mesh for Home Page
-const MiniMarketMesh = () => {
-    const nodes = [
-        { x: 0, y: 0, active: true }, { x: 1, y: 0 }, { x: 2, y: 0 },
-        { x: 0, y: 1 }, { x: 1, y: 1, active: true }, { x: 2, y: 1 },
-        { x: 0, y: 2 }, { x: 1, y: 2 }, { x: 2, y: 2, active: true },
-    ];
-    return (
-        <div style={{ position: 'relative', height: '400px', perspective: '1000px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <motion.div
-                animate={{ rotateX: [60, 55, 60], rotateZ: [45, 40, 45] }}
-                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                style={{ position: 'relative', width: '300px', height: '300px', transformStyle: 'preserve-3d' }}
-            >
-                {nodes.map((n, i) => (
-                    <div key={i} style={{ position: 'absolute', left: `${n.x * 100}px`, top: `${n.y * 100}px` }}>
-                        <IsometricNode active={n.active} color="#4F46E5" />
-                    </div>
-                ))}
-            </motion.div>
-        </div>
-    );
-};
+import FloatingCard from '../components/ui/FloatingCard';
+import ParticleBackground from '../components/ui/ParticleBackground';
+import Floating3DShape, { ScrollReveal3D, Parallax3DElement, Rotating3DCard } from '../components/ui/3DAnimations';
+import AnimatedBlob, { PulsingOrb } from '../components/ui/AnimatedBlob';
+import Marquee from '../components/ui/Marquee';
+import AgentUserChat from '../components/ui/AgentUserChat';
+import styles from '../styles/responsive.module.css';
 
 export default function Home() {
-    const { scrollY } = useScroll();
-    const heroY = useTransform(scrollY, [0, 500], [0, 200]);
-
     return (
-        <div style={{ background: '#0F172A', minHeight: '100vh', overflowX: 'hidden' }}>
+        <div style={{ background: '#FFFFFF', color: '#111827', overflowX: 'hidden' }}>
 
-            {/* 1. HERO SECTION (Cartage Style) */}
-            <div style={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '0', overflow: 'hidden' }}>
+            {/* 1. HERO SECTION */}
+            <Section padding="none" style={{ position: 'relative', paddingTop: '120px', paddingBottom: '100px', overflow: 'hidden' }}>
+                <Floating3DShape shape="circle" size={400} top="-10%" right="-5%" color="rgba(255, 107, 53, 0.05)" blur={60} />
+                <Floating3DShape shape="rounded" size={300} bottom="10%" left="-5%" color="rgba(79, 70, 229, 0.05)" blur={60} />
+                <AnimatedBlob size={500} top="20%" left="50%" opacity={0.03} />
+                <PulsingOrb size={150} top="15%" left="15%" opacity={0.2} />
 
-                {/* Floating 3D Decorative Decals */}
-                <Floating3DElement icon={Hexagon} color="#6366f1" size={120} top="15%" left="5%" delay={0} rotate />
-                <Floating3DElement icon={Circle} color="#34d399" size={80} top="60%" left="12%" delay={2} />
-                <Floating3DElement icon={Box} color="#f472b6" size={100} top="25%" left="85%" delay={1} rotate />
-                <Floating3DElement icon={Hexagon} color="#fbbf24" size={60} top="75%" left="80%" delay={3} />
-
-                {/* Background Image */}
-                <div style={{
-                    position: 'absolute', inset: 0,
-                    backgroundImage: 'url(https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000&auto=format&fit=crop)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    filter: 'blur(8px) brightness(0.4)',
-                    zIndex: 0
-                }}></div>
-
-                {/* Content Container */}
-                <div className="container" style={{ position: 'relative', zIndex: 10, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-
-                    {/* Headline */}
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        style={{
-                            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
-                            fontWeight: 600,
-                            color: 'white',
-                            lineHeight: 1.1,
-                            marginBottom: '24px',
-                            marginTop: '130px',
-                            maxWidth: '900px',
-                            fontFamily: '"Inter", sans-serif'
-                        }}
-                    >
-                        Meet Wilson—AI for logistics, built for manufacturers and distributors.
-                    </motion.h1>
-
-                    {/* Subhead */}
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.8)', maxWidth: '600px', marginBottom: '40px', lineHeight: 1.6 }}
-                    >
-                        From <span style={{ color: 'white', fontWeight: 500 }}>wilson@yourcompany.com</span>, Wilson manages shipments and keeps stakeholders updated.
-                    </motion.p>
-
-                    {/* CTA Buttons */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        style={{ display: 'flex', gap: '16px', marginBottom: '80px' }}
-                    >
-                        <Button style={{ background: 'white', color: 'black', borderRadius: '100px', padding: '16px 32px', fontSize: '1rem', fontWeight: 600 }}>
-                            Hire Wilson <ArrowRight size={18} style={{ marginLeft: '8px' }} />
-                        </Button>
-                        <Button variant="outline" style={{ borderRadius: '100px', borderColor: 'rgba(255,255,255,0.3)', color: 'white', padding: '16px 32px', fontSize: '1rem' }}>
-                            Book a demo
-                        </Button>
-                    </motion.div>
-
-                    {/* Tablet Mockup Area */}
-                    <div style={{ position: 'relative', width: '100%', maxWidth: '1000px', perspective: '1000px' }}>
-                        <motion.div
-                            style={{
-                                y: heroY,
-                                rotateX: 20,
-                                scale: 0.95,
-                                boxShadow: '0 50px 100px -20px rgba(0,0,0,0.5)',
-                                borderRadius: '24px',
-                                overflow: 'hidden',
-                                border: '8px solid #282828',
-                                background: '#121212'
-                            }}
-                        >
-                            <img src="https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=2000&auto=format&fit=crop" alt="Dashboard" style={{ width: '100%', display: 'block', opacity: 0.9 }} />
-                        </motion.div>
-
-                        {/* Floating Glass Cards */}
-                        <GlassCard x="-12%" y="20%" delay={0.6}>
-                            <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#F59E0B', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Phone size={20} color="white" /></div>
-                            <div style={{ textAlign: 'left' }}>
-                                <div style={{ color: 'white', fontWeight: 600, fontSize: '0.9rem' }}>Sundays</div>
-                                <div style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.75rem' }}>Incoming call...</div>
-                            </div>
-                        </GlassCard>
-
-                        <GlassCard x="-15%" y="45%" delay={0.8}>
-                            <div style={{ width: 40, height: 40, borderRadius: '12px', background: '#10B981', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><FileText size={20} color="white" /></div>
-                            <div style={{ textAlign: 'left' }}>
-                                <div style={{ color: 'white', fontWeight: 600, fontSize: '0.9rem' }}>PO's_July.xls</div>
-                                <div style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.75rem' }}>Processing data</div>
-                            </div>
-                        </GlassCard>
-
-                        <GlassCard x="85%" y="30%" delay={1.0}>
-                            <div style={{ width: 40, height: 40, borderRadius: '12px', background: '#3B82F6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><AnimatedRocket size={24} color="white" /></div>
-                            <div style={{ textAlign: 'left' }}>
-                                <div style={{ color: 'white', fontWeight: 600, fontSize: '0.9rem' }}>Shipment #402</div>
-                                <div style={{ color: '#3B82F6', fontSize: '0.75rem', fontWeight: 600 }}>Out for delivery</div>
-                            </div>
-                        </GlassCard>
-                    </div>
-                </div>
-
-                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '200px', background: 'linear-gradient(to bottom, transparent, white)' }}></div>
-            </div>
-
-            {/* 2. SECTION: CAPABILITIES GRID */}
-            <Section padding="xl" style={{ background: 'white', position: 'relative', paddingTop: '120px', paddingBottom: '80px' }}>
-                <div className="container" style={{ position: 'relative', zIndex: 5 }}>
-                    <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-                        <Badge style={{ background: '#EEF2FF', color: '#4F46E5', border: 'none', marginBottom: '24px' }}>Capabilities</Badge>
-                        <h2 style={{ fontSize: '3.5rem', fontWeight: 800, color: '#111827' }}>Everything you need to ship.</h2>
-                    </div>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '40px' }}>
-                        <FeatureCard
-                            icon={<AnimatedGlobe size={40} color="white" />}
-                            gradient="linear-gradient(135deg, #3B82F6, #8B5CF6)"
-                            title="Global Reach"
-                            desc="Access markets and data sources across 140+ countries instantly."
-                            delay={0}
-                        />
-                        <FeatureCard
-                            icon={<AnimatedShield size={40} color="white" />}
-                            gradient="linear-gradient(135deg, #10B981, #3B82F6)"
-                            title="Bank-Grade Security"
-                            desc="SOC2 Type II certified. Your client data is encrypted and sovereign."
-                            delay={0.2}
-                        />
-                        <FeatureCard
-                            icon={<AnimatedChart size={40} color="white" />}
-                            gradient="linear-gradient(135deg, #F59E0B, #EF4444)"
-                            title="Predictive Growth"
-                            desc="AI models that identify churn risk and upsell opportunities before you do."
-                            delay={0.4}
-                        />
-                    </div>
-                </div>
-            </Section>
-
-            {/* 3. MINI MARKET MESH INTEGRATION (BOXED) */}
-            <Section padding="xl" style={{ background: 'white', paddingBottom: '80px' }}>
-                <div className="container" style={{
-                    background: '#F8FAFC',
-                    borderRadius: '48px',
-                    padding: '80px',
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    gap: '80px',
-                    alignItems: 'center',
-                    border: '1px solid #E5E7EB',
-                    maxWidth: '1200px',
-                    margin: '0 auto'
-                }}>
-                    <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-                        <Badge style={{ background: '#EEF2FF', color: '#4F46E5', marginBottom: '24px' }}>Market Reach</Badge>
-                        <h2 style={{ fontSize: '3rem', fontWeight: 800, color: '#111827', marginBottom: '32px' }}>The Distribution Mesh.</h2>
-                        <p style={{ fontSize: '1.2rem', color: '#6B7280', marginBottom: '32px' }}>Wilson is hard-wired into the carrier mesh, pulling appetite data and binding instantly across 500+ markets.</p>
-                        <Button variant="outline">Learn About Marketplace</Button>
-                    </motion.div>
-                    <MiniMarketMesh />
-                </div>
-            </Section>
-
-            {/* 4. VIDEO SECTION (BOXED OVERLAP) */}
-            <Section padding="xl" style={{ background: 'white', paddingBottom: '80px', paddingTop: '60px', zIndex: 20 }}>
-                <div className="container" style={{ position: 'relative', height: '640px' }}>
-                    <div style={{ background: 'linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%)', padding: '120px 80px', height: '80%', position: 'relative', borderRadius: '48px', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.05)' }}>
-                        <div className="container">
-                            <div style={{ maxWidth: '500px' }}>
-                                <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#1F2937', marginBottom: '16px' }}>See Wilson in Action</h2>
-                                <p style={{ fontSize: '1.1rem', color: '#4B5563' }}>Watch how our AI handles real-world logistics challenges in seconds.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                        style={{
-                            position: 'absolute', bottom: '-80px', left: '30%', width: '65%', maxWidth: '900px', zIndex: 30,
-                            borderRadius: '32px', overflow: 'hidden', boxShadow: '0 40px 80px -15px rgba(0, 0, 0, 0.3)', border: '12px solid white'
-                        }}
-                    >
-                        <div style={{ position: 'relative', paddingBottom: '56.25%', background: '#000' }}>
-                            <iframe
-                                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                                src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1&modestbranding=1"
-                                title="Product Demo" frameBorder="0" allowFullScreen
-                            />
-                        </div>
-                    </motion.div>
-                </div>
-            </Section>
-
-            {/* 6. CLOSING PUZZLE INTEGRATION (BOXED) */}
-            <Section padding="xl" style={{ background: 'white', paddingTop: '120px', paddingBottom: '80px', position: 'relative', zIndex: 5 }}>
-                <div className="container" style={{
-                    background: '#FAF5FF',
-                    borderRadius: '48px',
-                    padding: '80px',
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    gap: '80px',
-                    alignItems: 'center',
-                    border: '1px solid #E5E7EB',
-                    maxWidth: '1200px',
-                    margin: '0 auto',
-                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.05)'
-                }}>
-                    <div style={{ position: 'relative', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            transition={{ duration: 0.8 }}
-                            style={{ position: 'relative' }}
-                        >
-                            <WaxSeal active={true} />
-                            <motion.div
-                                animate={{ x: [-100, 0], y: [-50, 0], opacity: [0, 1] }}
-                                transition={{ duration: 1, delay: 0.5 }}
-                                style={{ position: 'absolute', top: -100, left: -100 }}
-                            >
-                                <DocumentPiece />
-                            </motion.div>
-                        </motion.div>
-                    </div>
-                    <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-                        <Badge style={{ background: '#FEF3C7', color: '#D97706', marginBottom: '24px' }}>Closure</Badge>
-                        <h2 style={{ fontSize: '3rem', fontWeight: 800, color: '#111827', marginBottom: '32px' }}>Instant Binding.</h2>
-                        <p style={{ fontSize: '1.2rem', color: '#6B7280', marginBottom: '32px' }}>Wilson automates signatures, filings, and issuance in seconds.</p>
-                        <Button style={{ background: '#111827', color: 'white' }}>See the Workflow</Button>
-                    </motion.div>
-                </div>
-            </Section>
-
-            {/* 7. TEAM FOCUS */}
-            <ParallaxSection image="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2000&auto=format&fit=crop" height="80vh" overlayColor="rgba(161, 164, 171, 0.7)">
-                <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', color: 'white' }}>
-                    <h2 style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', fontWeight: 800, marginBottom: '24px', lineHeight: 1.1 }}>
-                        Built by <span style={{ color: '#F472B6' }}>Experts.</span> <br /> Trained by <span style={{ color: '#34D399' }}>Data.</span>
-                    </h2>
-                    <Button style={{ background: 'white', color: '#111827', fontWeight: 700, padding: '16px 40px' }} size="lg">Verify the Team</Button>
-                </div>
-            </ParallaxSection>
-
-            {/* NEW SECTION: MERGED AUTONOMOUS + WORKFLOW */}
-            <div style={{ position: 'relative', minHeight: '100vh', padding: '160px 0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div style={{
-                    position: 'absolute', inset: 0,
-                    backgroundImage: 'url(https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                }}>
-                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(213, 141, 141, 0.06)' }}></div>
-                </div>
-
-                <div className="container" style={{ position: 'relative', zIndex: 10, color: 'white' }}>
-
-                    {/* Hero Text */}
-                    <div style={{ textAlign: 'left', marginBottom: '100px' }}>
-                        <h2 style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 800, lineHeight: 1.1, marginBottom: '24px' }}>
-                            The Future is <br />
-                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '2px' }}>
-                                <AnimatedStrokeText text="AUT" />
-                                <AnimatedO />
-                                <AnimatedStrokeText text="NOMOUS" />
-                            </div>
-                            <br />
-                            Distribution.
-                        </h2>
-                        <p style={{ fontSize: '1.25rem', maxWidth: '600px', margin: '0 0 40px 0', opacity: 0.9 }}>
-                            Stop relying on manual placement. Let the mesh handle the heavy lifting.
-                        </p>
-                        <Button size="lg" style={{ background: 'white', color: 'black' }}>Join the Revolution</Button>
-                    </div>
-
-                    {/* Feature Grid */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '60px' }}>
-                        {/* Column 1 */}
-                        <div>
-                            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'white', marginBottom: '32px' }}>Smart Placement</h3>
-                            <ul style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                                <WorkflowItem text="Instant appetite matching" color="white" />
-                                <WorkflowItem text="Direct carrier API quoting" color="white" />
-                                <WorkflowItem text="Multi-market submission" color="white" />
-                                <WorkflowItem text="Comparative rating view" color="white" />
-                            </ul>
-                        </div>
-
-                        {/* Column 2 */}
-                        <div>
-                            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'white', marginBottom: '32px' }}>Automated Ops</h3>
-                            <ul style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                                <WorkflowItem text="Auto-generated proposals" color="white" />
-                                <WorkflowItem text="One-click binding" color="white" />
-                                <WorkflowItem text="Policy checking logic" color="white" />
-                                <WorkflowItem text="Renewal reminders" color="white" />
-                            </ul>
-                        </div>
-
-                        {/* Column 3 */}
-                        <div>
-                            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'white', marginBottom: '32px' }}>Live Updates</h3>
-                            <ul style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                                <WorkflowItem text="Real-time status tracking" color="white" />
-                                <WorkflowItem text="Underwriter comms log" color="white" />
-                                <WorkflowItem text="Client notification sync" color="white" />
-                                <WorkflowItem text="Commission reconciliation" color="white" />
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* NEW SECTION: WILSON COORDINATES */}
-            <Section padding="xl" style={{ background: 'white', paddingTop: '160px', paddingBottom: '160px' }}>
-                <div className="container" style={{ maxWidth: '1000px', margin: '0 auto' }}>
-                    <h2 style={{
-                        fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                        fontWeight: 500,
-                        lineHeight: 1.1,
-                        color: '#111827',
-                        letterSpacing: '-0.02em'
-                    }}>
-                        Wilson <span style={{ display: 'inline-block', verticalAlign: 'middle', margin: '0 12px' }}>
-                            <motion.div
-                                animate={{ y: [0, -10, 0], rotate: [0, 5, -5, 0] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                            >
-                                <Box size={64} strokeWidth={1} />
-                            </motion.div>
-                        </span> coordinates shipments from purchase to delivery with the consistency you'd expect from your best hire.
-                    </h2>
-                    <div style={{ marginTop: '60px', display: 'flex', gap: '8px', fontSize: '0.9rem', color: '#6B7280', fontWeight: 500 }}>
-                        <span>Monitored by Cartage.</span>
-                        <span>Trained by your team.</span>
-                        <span>Smarter with every move.</span>
-                    </div>
-                </div>
-            </Section>
-
-            {/* 8. TRUST / STATS */}
-            <Section padding="xl" style={{ background: 'white', paddingTop: '120px', paddingBottom: '80px' }}>
                 <div className="container">
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '60px', textAlign: 'center' }}>
-                        <div><div style={{ fontSize: '4rem', fontWeight: 800, color: '#4F46E5' }}>10k+</div><div style={{ color: '#6B7280' }}>Active Shipments</div></div>
-                        <div><div style={{ fontSize: '4rem', fontWeight: 800, color: '#10B981' }}>99%</div><div style={{ color: '#6B7280' }}>On-Time Delivery</div></div>
-                        <div><div style={{ fontSize: '4rem', fontWeight: 800, color: '#F59E0B' }}>$2B+</div><div style={{ color: '#6B7280' }}>Cargo Value Protected</div></div>
-                    </div>
-                    <div style={{ marginTop: '60px', borderTop: '1px solid #F3F4F6', paddingTop: '60px' }}>
-                        <p style={{ textAlign: 'center', color: '#9CA3AF', marginBottom: '40px', fontWeight: 600 }}>TRUSTED BY INDUSTRY LEADERS</p>
-                        <Marquee speed={15}>
-                            {['Acme Logistics', 'Global Freight', 'PortAuthority', 'TransOcean', 'CargoFast', 'SwiftMove', 'TrackIt', 'ShipSimple'].map((logo, i) => (
-                                <span key={i} style={{ fontSize: '1.75rem', fontWeight: 900, color: '#000', opacity: 0.2, margin: '0 50px', filter: 'grayscale(1)', textTransform: 'uppercase' }}>{logo}</span>
-                            ))}
-                        </Marquee>
-                    </div>
-                </div>
-            </Section>
-
-            {/* 9. TESTIMONIAL UI SPLIT (BOXED) */}
-            <Section padding="xl" style={{ background: 'white', paddingBottom: '80px' }}>
-                <div className="container" style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1.2fr',
-                    minHeight: '600px',
-                    borderRadius: '48px',
-                    overflow: 'hidden',
-                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1)',
-                    border: '1px solid #E5E7EB',
-                    maxWidth: '1200px',
-                    margin: '0 auto'
-                }}>
-                    <div style={{ padding: '60px', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: '#F8FAFC' }}>
-                        <div style={{ fontSize: '1.5rem', fontStyle: 'italic', color: '#1F2937', marginBottom: '40px' }}>
-                            "Before we had Wilson, managing carrier relationships was a full-time job. Now, our operations run smoothly."
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                            <div style={{ width: 60, height: 60, borderRadius: '50%', background: '#4F46E5', overflow: 'hidden' }}>
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100&auto=format&fit=crop" alt="CEO" />
+                    <div className={styles.heroGrid}>
+                        <ScrollReveal3D direction="left">
+                            <div style={{ paddingTop: '40px' }}>
+                                <Badge style={{ marginBottom: '24px' }}>Introducing Broker Agentx</Badge>
+                                <h1 style={{
+                                    fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+                                    fontWeight: 800,
+                                    lineHeight: 1.1,
+                                    marginBottom: '24px',
+                                    letterSpacing: '-0.02em'
+                                }}>
+                                    The AI-native <br />
+                                    <span style={{
+                                        background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)',
+                                        WebkitBackgroundClip: 'text',
+                                        WebkitTextFillColor: 'transparent'
+                                    }}>brokerage platform</span>
+                                </h1>
+                                <p style={{
+                                    fontSize: 'clamp(1.1rem, 2vw, 1.25rem)',
+                                    color: '#4B5563',
+                                    marginBottom: '40px',
+                                    maxWidth: '540px',
+                                    lineHeight: 1.5
+                                }}>
+                                    Transform your brokerage into a connected knowledge system—one that learns, optimizes, and improves itself intelligently.
+                                </p>
+                                <div className={styles.buttonGroup}>
+                                    <Button size="xl" style={{ background: '#111827', border: 'none' }}>Start for free</Button>
+                                    <Button size="xl" variant="outline">Talk to us</Button>
+                                </div>
                             </div>
-                            <div><div style={{ fontWeight: 700 }}>David Chen</div><div style={{ color: '#6B7280' }}>CEO at LogisticsGlobal</div></div>
-                        </div>
-                    </div>
-                    <div style={{ position: 'relative', overflow: 'hidden', background: '#0F172A' }}>
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop" alt="Dashboard Analytics" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} />
+                        </ScrollReveal3D>
+
+                        <ScrollReveal3D direction="right" delay={0.2}>
+                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+                                <Parallax3DElement speed={-0.2}>
+                                    <AgentUserChat />
+                                </Parallax3DElement>
+
+                                {/* Background accents for hero visual */}
+                                <div style={{
+                                    position: 'absolute',
+                                    width: '120%',
+                                    height: '120%',
+                                    background: 'radial-gradient(circle, rgba(255,107,53,0.1) 0%, rgba(255,255,255,0) 70%)',
+                                    zIndex: -1
+                                }} />
+                            </div>
+                        </ScrollReveal3D>
                     </div>
                 </div>
             </Section>
 
-            {/* 10. FINAL CTA with VAULT BG */}
-            <ParallaxSection image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop" height="70vh" overlayColor="rgba(109, 122, 152, 0.9)">
-                <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', opacity: 0.3, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <SecurityRing size={800} color="#10B981" />
+            {/* 2. LOGO MARQUEE */}
+            <Section padding="xs" style={{ borderTop: '1px solid #F3F4F6', borderBottom: '1px solid #F3F4F6', background: '#FAFAFA' }}>
+                <div className="container" style={{ overflow: 'hidden' }}>
+                    <Marquee speed={30} pauseOnHover={true}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '80px', opacity: 0.5, filter: 'grayscale(100%)', padding: '10px 0' }}>
+                            <span style={{ fontWeight: 800, fontSize: '1.5rem', letterSpacing: '2px' }}>TRANSURE</span>
+                            <span style={{ fontWeight: 800, fontSize: '1.5rem', letterSpacing: '2px' }}>FEDEX</span>
+                            <span style={{ fontWeight: 800, fontSize: '1.5rem', letterSpacing: '2px' }}>AMAZON</span>
+                            <span style={{ fontWeight: 800, fontSize: '1.5rem', letterSpacing: '2px' }}>ZOOM</span>
+                            <span style={{ fontWeight: 800, fontSize: '1.5rem', letterSpacing: '2px' }}>NVIDIA</span>
+                            <span style={{ fontWeight: 800, fontSize: '1.5rem', letterSpacing: '2px' }}>SHOPIFY</span>
+                            <span style={{ fontWeight: 800, fontSize: '1.5rem', letterSpacing: '2px' }}>GITHUB</span>
+                            <span style={{ fontWeight: 800, fontSize: '1.5rem', letterSpacing: '2px' }}>STRIPE</span>
+                        </div>
+                    </Marquee>
                 </div>
-                <div className="container" style={{ textAlign: 'center', color: 'white', position: 'relative', zIndex: 10 }}>
-                    <h2 style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '32px' }}>Ready to ship faster?</h2>
-                    <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
-                        <Button style={{ background: '#669f8cff', color: 'black', border: 'none' }} size="lg">Start Free Trial</Button>
-                        <Button variant="outline" style={{ borderColor: 'white', color: 'white' }} size="lg">Contact Sales</Button>
+            </Section>
+
+            {/* 3. CORE FEATURE SHOWCASE */}
+            <Section style={{ position: 'relative' }}>
+                <Floating3DShape shape="square" size={100} top="20%" right="10%" color="rgba(255,107,53,0.1)" />
+                <div className="container">
+                    <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+                        <ScrollReveal3D direction="up">
+                            <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, marginBottom: '20px' }}>
+                                Intelligence that scales <br /> with your business
+                            </h2>
+                            <p style={{ color: '#4B5563', maxWidth: '600px', margin: '0 auto', fontSize: '1.1rem' }}>
+                                Build a brokerage that intelligently syncs with your workflow, and is automatically optimized for growth.
+                            </p>
+                        </ScrollReveal3D>
+                    </div>
+
+                    <div className={styles.cardGrid2} style={{ gap: '40px' }}>
+                        <ScrollReveal3D direction="left">
+                            <Rotating3DCard>
+                                <div style={{ background: '#F9FAFB', borderRadius: '32px', padding: '48px', height: '100%', border: '1px solid #F3F4F6' }}>
+                                    <Badge style={{ background: '#FF6B35', border: 'none', marginBottom: '24px', opacity: 0.8 }}>BROKER AGENTX</Badge>
+                                    <h3 style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '16px' }}>Your clients and data, <br /> in sync (finally)</h3>
+                                    <p style={{ color: '#4B5563', marginBottom: '32px' }}>
+                                        Broker Agentx monitors your clients, proactively suggesting improvements to ensure your clients find answers, up-to-date data every time.
+                                    </p>
+                                    <Button variant="outline" style={{ borderRadius: '100px' }}>Explore Intelligence</Button>
+                                </div>
+                            </Rotating3DCard>
+                        </ScrollReveal3D>
+
+                        <ScrollReveal3D direction="right">
+                            <Rotating3DCard>
+                                <div style={{ background: '#F9FAFB', borderRadius: '32px', padding: '48px', height: '100%', border: '1px solid #F3F4F6' }}>
+                                    <Badge style={{ background: '#111827', border: 'none', marginBottom: '24px', opacity: 0.8 }}>AUTOMATION</Badge>
+                                    <h3 style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '16px' }}>Built for humans, <br /> optimized for AI</h3>
+                                    <p style={{ color: '#4B5563', marginBottom: '32px' }}>
+                                        Make sure your business gets monitored by AI agents like ChatGPT, Claude, and Gemini with built-in MCP support.
+                                    </p>
+                                    <Button variant="outline" style={{ borderRadius: '100px' }}>Learn More</Button>
+                                </div>
+                            </Rotating3DCard>
+                        </ScrollReveal3D>
                     </div>
                 </div>
-            </ParallaxSection>
-        </div>
-    );
-}
+            </Section>
 
-function FeatureCard({ icon, title, desc, gradient, delay }) {
-    return (
-        <Tilt intensity={15} style={{ display: 'block' }}>
-            <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay }}
-                style={{
-                    background: 'white', padding: '48px 40px', borderRadius: '32px', border: '1px solid #F3F4F6',
-                    boxShadow: '0 20px 40px -4px rgba(0,0,0,0.05)', position: 'relative', overflow: 'hidden', transformStyle: 'preserve-3d'
-                }}
-            >
-                <div style={{
-                    width: '72px', height: '72px', borderRadius: '20px', background: gradient,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '32px',
-                    boxShadow: '0 12px 24px -4px rgba(0,0,0,0.15)', transform: 'translateZ(40px)'
-                }}>
-                    {icon}
+            {/* 4. PLATFORM DISCOVERY (DARK SECTION) */}
+            <Section style={{ background: '#0F172A', color: 'white', position: 'relative', overflow: 'hidden', padding: '120px 0' }}>
+                <ParticleBackground count={20} />
+                <Floating3DShape shape="rounded" size={400} top="-10%" right="-10%" color="rgba(79, 70, 229, 0.1)" blur={80} />
+                <AnimatedBlob size={600} bottom="-20%" left="-10%" opacity={0.05} color="#FF6B35" />
+
+                <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+                    <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+                        <ScrollReveal3D direction="up">
+                            <Badge style={{ background: 'rgba(255,107,53,0.2)', color: '#FF6B35', border: 'none', marginBottom: '16px' }}>Platform</Badge>
+                            <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, marginBottom: '24px' }}>Discover the Agentx platform</h2>
+                        </ScrollReveal3D>
+                    </div>
+
+                    <ScrollReveal3D direction="up" delay={0.2}>
+                        <div style={{
+                            background: 'rgba(255,255,255,0.05)',
+                            borderRadius: '24px',
+                            padding: '8px',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            boxShadow: '0 50px 100px -20px rgba(0,0,0,0.5)',
+                            position: 'relative',
+                            overflow: 'hidden'
+                        }}>
+                            <img
+                                src="https://images.unsplash.com/photo-1551288049-bbbda546697a?auto=format&fit=crop&q=80&w=2000"
+                                alt="Platform Preview"
+                                style={{ width: '100%', borderRadius: '16px', display: 'block' }}
+                            />
+                            {/* Decorative overlays */}
+                            <div style={{ position: 'absolute', top: '20px', left: '20px', padding: '12px 20px', background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(10px)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', fontSize: '0.8rem', fontWeight: 600 }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                    <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#EF4444' }}></span> Live Monitoring
+                                </div>
+                            </div>
+                        </div>
+                    </ScrollReveal3D>
                 </div>
-                <h3 style={{ fontSize: '1.75rem', fontWeight: 800, marginBottom: '16px', color: '#111827', transform: 'translateZ(30px)' }}>{title}</h3>
-                <p style={{ fontSize: '1.125rem', color: '#6B7280', lineHeight: 1.6, transform: 'translateZ(20px)' }}>{desc}</p>
-            </motion.div>
-        </Tilt>
-    );
-}
+            </Section>
 
-function AnimatedStrokeText({ text }) {
-    const letters = text.split("");
+            {/* 5. AUTOMATION SECTION */}
+            <Section style={{ position: 'relative' }}>
+                <Floating3DShape shape="triangle" size={120} top="15%" left="5%" opacity={0.15} />
+                <div className="container">
+                    <ScrollReveal3D direction="up">
+                        <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+                            <h2 style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '16px' }}>What Broker Agentx Automates</h2>
+                            <div style={{ width: '60px', height: '4px', background: '#FF6B35', margin: '0 auto' }}></div>
+                        </div>
+                    </ScrollReveal3D>
 
-    const container = {
-        hidden: { opacity: 0 },
-        visible: (i = 1) => ({
-            opacity: 1,
-            transition: { staggerChildren: 0.1, delayChildren: 0.04 * i },
-        }),
-    };
+                    <div className={styles.cardGrid2} style={{ gap: '60px', alignItems: 'center' }}>
+                        <ScrollReveal3D direction="left">
+                            <div style={{ position: 'relative' }}>
+                                <Rotating3DCard>
+                                    <div style={{
+                                        background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)',
+                                        borderRadius: '24px',
+                                        height: '400px',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        color: 'white',
+                                        padding: '40px'
+                                    }}>
+                                        <TrendingUp size={120} strokeWidth={1} />
+                                        <h3 style={{ fontSize: '2rem', fontWeight: 800, marginTop: '20px' }}>92%</h3>
+                                        <p style={{ fontWeight: 600 }}>Automation Accuracy</p>
+                                    </div>
+                                </Rotating3DCard>
+                                <Floating3DShape shape="circle" size={80} bottom="-20px" right="-20px" opacity={1} zIndex={5} color="#111827" />
+                            </div>
+                        </ScrollReveal3D>
 
-    const child = {
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                type: "spring",
-                damping: 12,
-                stiffness: 100,
-            },
-        },
-        hidden: {
-            opacity: 0,
-            y: 20,
-            transition: {
-                type: "spring",
-                damping: 12,
-                stiffness: 100,
-            },
-        },
-    };
+                        <div className={styles.cardGrid2} style={{ gap: '24px' }}>
+                            {[
+                                { title: 'Growth & Prospecting', icon: Search, desc: 'Research companies, identify contacts, generate outreach, post to LinkedIn.' },
+                                { title: 'Policy & Risk Analysis', icon: Shield, desc: 'Extract coverage details, identify gaps, compare programs, review contracts.' },
+                                { title: 'Submissions & Placement', icon: FileCheck, desc: 'Pre-fill applications, write narratives, match carrier appetite.' },
+                                { title: 'Compliance & Admin', icon: Calculator, desc: 'Produce certificates, draft loss run letters, calculate business income.' }
+                            ].map((item, idx) => (
+                                <ScrollReveal3D key={idx} direction="up" delay={idx * 0.1}>
+                                    <div style={{
+                                        background: 'white',
+                                        padding: '24px',
+                                        borderRadius: '20px',
+                                        border: '1px solid #F3F4F6',
+                                        transition: 'all 0.3s ease',
+                                        cursor: 'default'
+                                    }} onMouseEnter={(e) => {
+                                        e.currentTarget.style.borderColor = '#FF6B35';
+                                        e.currentTarget.style.transform = 'translateY(-5px)';
+                                        e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05)';
+                                    }} onMouseLeave={(e) => {
+                                        e.currentTarget.style.borderColor = '#F3F4F6';
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                        e.currentTarget.style.boxShadow = 'none';
+                                    }}>
+                                        <div style={{ width: 48, height: 48, borderRadius: '12px', background: '#FFF7ED', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                                            <item.icon size={24} color="#FF6B35" />
+                                        </div>
+                                        <h4 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '8px' }}>{item.title}</h4>
+                                        <p style={{ fontSize: '0.95rem', color: '#4B5563', lineHeight: 1.4 }}>{item.desc}</p>
+                                    </div>
+                                </ScrollReveal3D>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </Section>
 
-    return (
-        <motion.div
-            style={{ display: "flex", overflow: "hidden", display: 'inline-flex' }}
-            variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-        >
-            {letters.map((letter, index) => (
-                <motion.span
-                    key={index}
-                    variants={child}
-                    style={{
-                        fontSize: 'inherit',
-                        fontWeight: 'inherit',
-                        color: 'transparent',
-                        WebkitTextStroke: '2px #fff',
-                        textShadow: '0 0 20px rgba(255,255,255,0.5)'
-                    }}
-                >
-                    {letter === " " ? "\u00A0" : letter}
-                </motion.span>
-            ))}
-        </motion.div>
-    );
-}
+            {/* 6. AI AGENTS SECTION */}
+            <Section style={{ background: '#F9FAFB', position: 'relative' }}>
+                <PulsingOrb size={200} top="10%" right="-5%" opacity={0.1} />
+                <div className="container">
+                    <ScrollReveal3D direction="up">
+                        <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+                            <Badge variant="outline" style={{ marginBottom: '16px' }}>Advantages</Badge>
+                            <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800 }}>Unlock the power of <br /> AI-driven Agents</h2>
+                        </div>
+                    </ScrollReveal3D>
 
-function AnimatedO() {
-    return (
-        <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '0.8em', height: '0.8em', position: 'relative', top: '0.1em' }}>
-            {/* Outer Ring */}
-            <motion.span
-                style={{
-                    position: 'absolute', inset: 0, border: '6px solid white', borderRadius: '50%',
-                    borderRightColor: 'transparent', borderBottomColor: 'transparent'
-                }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            />
-            {/* Inner Ring */}
-            <motion.span
-                style={{
-                    position: 'absolute', inset: '25%', border: '4px solid white', borderRadius: '50%',
-                    opacity: 0.6
-                }}
-                animate={{ scale: [0.8, 1.2, 0.8] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            />
-        </span>
-    );
-}
+                    <div className={styles.cardGrid3}>
+                        {[
+                            { title: 'Works across channels', color: '#8B5CF6', icon: Globe, desc: 'Integrate your Agent with various platforms like Slack, WhatsApp, and more.' },
+                            { title: 'Secure by default', color: '#F43F5E', icon: Lock, desc: 'Your Agent ensures the utmost safety by not revealing sensitive data.' },
+                            { title: 'Enterprise quality', color: '#0EA5E9', icon: Award, desc: 'AI-powered guardrails prevent misinformation and ensure professionalism.' }
+                        ].map((item, idx) => (
+                            <ScrollReveal3D key={idx} direction="up" delay={idx * 0.2}>
+                                <Rotating3DCard>
+                                    <div style={{
+                                        background: 'white',
+                                        padding: '40px',
+                                        borderRadius: '24px',
+                                        height: '100%',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        textAlign: 'center',
+                                        boxShadow: '0 10px 25px rgba(0,0,0,0.02)',
+                                        border: '1px solid #F3F4F6'
+                                    }}>
+                                        <div style={{
+                                            width: '80px',
+                                            height: '80px',
+                                            borderRadius: '20px',
+                                            background: `${item.color}15`,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            marginBottom: '32px'
+                                        }}>
+                                            <item.icon size={40} color={item.color} />
+                                        </div>
+                                        <h4 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>{item.title}</h4>
+                                        <p style={{ color: '#4B5563', marginBottom: '24px' }}>{item.desc}</p>
+                                        <Button variant="link" style={{ color: item.color, fontWeight: 700, display: 'flex', alignItems: 'center' }}>
+                                            Learn more <ArrowRight size={16} style={{ marginLeft: '4px' }} />
+                                        </Button>
+                                    </div>
+                                </Rotating3DCard>
+                            </ScrollReveal3D>
+                        ))}
+                    </div>
+                </div>
+            </Section >
 
-function WorkflowItem({ text, color = '#4B5563' }) {
-    return (
-        <li style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '1.125rem', color: color }}>
-            <div style={{ color: color === 'white' ? '#818CF8' : '#4F46E5', display: 'flex', alignItems: 'center' }}>
-                <ArrowRight size={20} />
-            </div>
-            {text}
-        </li>
+            {/* 7. CTA SECTION */}
+            < Section style={{ padding: '120px 0', position: 'relative', overflow: 'hidden' }
+            }>
+                <AnimatedBlob size={400} top="-10%" left="-10%" opacity={0.05} color="#FF6B35" />
+                <Floating3DShape shape="triangle" size={150} bottom="10%" right="10%" opacity={0.1} />
+
+                <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+                    <ScrollReveal3D direction="up">
+                        <div style={{
+                            background: '#111827',
+                            color: 'white',
+                            borderRadius: '40px',
+                            padding: '80px 40px',
+                            textAlign: 'center',
+                            overflow: 'hidden',
+                            position: 'relative',
+                            boxShadow: '0 40px 100px -15px rgba(0,0,0,0.3)'
+                        }}>
+                            <ParticleBackground count={15} />
+                            <div style={{ position: 'relative', zIndex: 1 }}>
+                                <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, marginBottom: '32px' }}>
+                                    Ready to automate your <br /> brokerage?
+                                </h2>
+                                <p style={{ fontSize: '1.25rem', opacity: 0.7, marginBottom: '48px', maxWidth: '600px', margin: '0 auto 48px' }}>
+                                    Join the next generation of AI-native brokerages today and start your 14-day free trial.
+                                </p>
+                                <div className={styles.buttonGroup} style={{ justifyContent: 'center' }}>
+                                    <Button size="xl" style={{ background: '#FF6B35', border: 'none' }}>Get Started Now</Button>
+                                    <Button size="xl" style={{ border: '1px solid white', background: 'transparent', color: 'white' }}>Schedule a Demo</Button>
+                                </div>
+                            </div>
+                        </div>
+                    </ScrollReveal3D>
+                </div>
+            </Section >
+
+            {/* FOOTER */}
+            < footer style={{ padding: '80px 0 40px', borderTop: '1px solid #F3F4F6', background: '#FFFFFF' }}>
+                <div className="container">
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '48px', marginBottom: '64px' }}>
+                        <div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
+                                <div style={{ width: 32, height: 32, background: '#FF6B35', borderRadius: '8px' }}></div>
+                                <span style={{ fontWeight: 800, fontSize: '1.25rem' }}>Broker Agentx</span>
+                            </div>
+                            <p style={{ color: '#6B7280', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                                Redefining brokerage with AI-native systems. Automate your workflow, delight your clients.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 style={{ fontWeight: 700, marginBottom: '24px' }}>Product</h4>
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', color: '#6B7280', fontSize: '0.95rem' }}>
+                                <li>Features</li>
+                                <li>Integrations</li>
+                                <li>Pricing</li>
+                                <li>Changelog</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style={{ fontWeight: 700, marginBottom: '24px' }}>Company</h4>
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', color: '#6B7280', fontSize: '0.95rem' }}>
+                                <li>About Us</li>
+                                <li>Careers</li>
+                                <li>Blog</li>
+                                <li>Contact</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style={{ fontWeight: 700, marginBottom: '24px' }}>Legal</h4>
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', color: '#6B7280', fontSize: '0.95rem' }}>
+                                <li>Privacy Policy</li>
+                                <li>Terms of Service</li>
+                                <li>Cookie Policy</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style={{ borderTop: '1px solid #F3F4F6', paddingTop: '40px', textAlign: 'center', fontSize: '0.9rem', color: '#9CA3AF' }}>
+                        <p>&copy; 2026 Broker Agentx. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer >
+        </div >
     );
 }
