@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import styles from '../../styles/responsive.module.css';
 
 export default function Section({
     children,
@@ -6,6 +6,7 @@ export default function Section({
     background = 'white', // white, gray, dark
     padding = 'lg', // none, sm, md, lg, xl
     id = '',
+    style = {},
     ...props
 }) {
     const backgrounds = {
@@ -15,24 +16,24 @@ export default function Section({
         primary: 'var(--color-primary)'
     };
 
-    const paddings = {
-        none: '0',
-        sm: '40px 0',
-        md: '80px 0',
-        lg: '120px 0',
-        xl: '160px 0'
+    const paddingClasses = {
+        none: '',
+        sm: styles.responsivePaddingSM,
+        md: styles.responsivePaddingMD,
+        lg: styles.responsivePaddingLG,
+        xl: styles.responsivePaddingXL
     };
 
     return (
         <section
             id={id}
-            className={className}
+            className={`${className} ${paddingClasses[padding] || ''}`}
             style={{
                 backgroundColor: backgrounds[background],
-                padding: paddings[padding],
                 position: 'relative',
                 overflow: 'hidden',
-                color: background === 'dark' || background === 'primary' ? 'white' : 'inherit'
+                color: background === 'dark' || background === 'primary' ? 'white' : 'inherit',
+                ...style
             }}
             {...props}
         >

@@ -12,7 +12,7 @@ export default function Pricing() {
         <div style={{ background: '#FFFFFF', color: '#111827', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
 
             {/* 1. HERO SECTION */}
-            <Section padding="xl" style={{ paddingTop: '180px', paddingBottom: '120px', textAlign: 'center' }}>
+            <Section padding="lg" style={{ paddingTop: '160px', textAlign: 'center' }}>
                 <div className="container" style={{ maxWidth: 1000 }}>
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
                         <div style={{ fontSize: '1rem', fontWeight: 700, color: '#4F46E5', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 24 }}>Transparent Pricing</div>
@@ -40,7 +40,7 @@ export default function Pricing() {
             </Section>
 
             {/* 2. PRICING CARDS */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '160px', paddingBottom: '160px' }}>
+            <Section padding="lg" style={{ background: '#F9FAFB' }}>
                 <div className="container">
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 40 }}>
                         <PricingCard
@@ -67,7 +67,7 @@ export default function Pricing() {
             </Section>
 
             {/* 3. FINAL CTA */}
-            <Section padding="lg" style={{ background: 'white', paddingBottom: 160 }}>
+            <Section padding="lg" style={{ background: 'white' }}>
                 <div className="container" style={{ maxWidth: 1000 }}>
                     <div style={{
                         background: '#EEF2FF',

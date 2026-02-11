@@ -9,7 +9,7 @@ export default function Contact() {
     return (
         <div style={{ background: '#FFFFFF', color: '#111827', minHeight: '100vh', paddingTop: '100px' }}>
             {/* 1. HERO SECTION */}
-            <Section padding="xl" style={{ background: '#F8FAFC', paddingBottom: '160px', paddingTop: '180px' }}>
+            <Section padding="lg" style={{ background: '#F8FAFC', paddingTop: '160px' }}>
                 <div className="container" style={{ textAlign: 'center' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -28,7 +28,7 @@ export default function Contact() {
             </Section>
 
             {/* 2. CONTACT GRID */}
-            <Section padding="xl" style={{ position: 'relative', overflow: 'hidden', paddingTop: '160px', paddingBottom: '160px' }}>
+            <Section padding="lg" style={{ position: 'relative', overflow: 'hidden' }}>
                 <div className="container">
                     <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.5fr) 1fr', gap: '80px' }}>
 
@@ -139,7 +139,7 @@ export default function Contact() {
             </Section>
 
             {/* 3. OFFICES SECTION */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '160px', paddingBottom: '160px' }}>
+            <Section padding="lg" style={{ background: '#F9FAFB' }}>
                 <div className="container">
                     <div style={{ textAlign: 'center', marginBottom: '60px' }}>
                         <h2 style={{ fontSize: '2.5rem', fontWeight: 800 }}>Global Presence</h2>

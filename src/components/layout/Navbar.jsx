@@ -165,22 +165,24 @@ export default function Navbar() {
                         >
                             <X size={32} />
                         </button>
-                        <div className="container" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '32px' }}>
+                        <div className="container" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '32px', paddingBottom: '80px' }}>
                             <MobileSection title="Platform">
-                                <MobileLink to="/platform/prospect">Prospect</MobileLink>
-                                <MobileLink to="/platform/review">Review</MobileLink>
-                                <MobileLink to="/platform/place">Place</MobileLink>
-                                <MobileLink to="/platform/execute">Execute</MobileLink>
+                                <MobileLink to="/platform/prospect" desc="Find your next client">Prospect</MobileLink>
+                                <MobileLink to="/platform/review" desc="Analyze policies instantly">Review</MobileLink>
+                                <MobileLink to="/platform/place" desc="Connect with carriers">Place</MobileLink>
+                                <MobileLink to="/platform/execute" desc="Bind and issue">Execute</MobileLink>
+                                <MobileLink to="/platform/integrations" desc="Works with your tools">Integrations</MobileLink>
+                                <MobileLink to="/platform/features" desc="Enterprise grade">Security</MobileLink>
                             </MobileSection>
                             <MobileSection title="Solutions">
-                                <MobileLink to="/solutions/solo-brokers">Solo Brokers</MobileLink>
-                                <MobileLink to="/solutions/growing-agencies">Growing Agencies</MobileLink>
-                                <MobileLink to="/solutions/enterprise-teams">Enterprise Teams</MobileLink>
+                                <MobileLink to="/solutions/solo-brokers" desc="Maximize personal production">Solo Brokers</MobileLink>
+                                <MobileLink to="/solutions/growing-agencies" desc="Scale your operations">Growing Agencies</MobileLink>
+                                <MobileLink to="/solutions/enterprise-teams" desc="Unify complex workflows">Enterprise Teams</MobileLink>
+                                <MobileLink to="/solutions/specialty-brokers" desc="Niche market tools">Specialty Brokers</MobileLink>
                             </MobileSection>
                             <MobileSection title="Company">
-                                <MobileLink to="/blog">Blog</MobileLink>
+                                <MobileLink to="/blog">Resources</MobileLink>
                                 <MobileLink to="/pricing">Pricing</MobileLink>
-                                <MobileLink to="/about">About Us</MobileLink>
                                 <MobileLink to="/contact">Contact</MobileLink>
                             </MobileSection>
                         </div>
@@ -279,10 +281,13 @@ function MobileSection({ title, children }) {
     );
 }
 
-function MobileLink({ to, children }) {
+function MobileLink({ to, children, desc }) {
     return (
-        <Link to={to} style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--color-text-heading)' }}>
-            {children}
+        <Link to={to} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <span style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--color-text-heading)' }}>
+                {children}
+            </span>
+            {desc && <span style={{ fontSize: '0.875rem', color: 'var(--color-text-body)' }}>{desc}</span>}
         </Link>
     );
 }

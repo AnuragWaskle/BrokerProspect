@@ -13,7 +13,7 @@ export default function Prospect() {
         <div style={{ background: '#FFFFFF', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
 
             {/* HERO SECTION - Left Text, Right Animated Visual */}
-            <Section padding="none" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', paddingBottom: '100px', background: 'white' }}>
+            <Section padding="lg" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', background: 'white' }}>
                 {/* Floating 3D Background Elements */}
                 <Floating3DShape shape="circle" size={150} top="10%" left="5%" delay={0} opacity={0.1} />
                 <Floating3DShape shape="rounded" size={100} top="60%" right="8%" delay={1.5} opacity={0.12} color="linear-gradient(135deg, #FF8C42 0%, #FF4D6D 100%)" />
@@ -148,7 +148,7 @@ export default function Prospect() {
             </Section>
 
             {/* HOW IT WORKS - Step by Step */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -232,7 +232,7 @@ export default function Prospect() {
             </Section>
 
             {/* WHAT YOU GET - Feature Grid */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg" background="gray">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -284,7 +284,7 @@ export default function Prospect() {
             </Section>
 
             {/* INTEGRATIONS */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px', position: 'relative', overflow: 'hidden' }}>
+            <Section padding="lg">
                 <AnimatedBlob size={250} bottom="-10%" left="-5%" opacity={0.06} delay={1} />
                 <Floating3DShape shape="triangle" size={110} top="20%" right="10%" delay={1.5} opacity={0.09} />
                 <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '900px', textAlign: 'center' }}>
@@ -343,7 +343,7 @@ export default function Prospect() {
             </Section>
 
             {/* FINAL CTA */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px', background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FF4D6D 100%)', position: 'relative', overflow: 'hidden' }}>
+            <Section padding="lg" style={{ background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FF4D6D 100%)', position: 'relative', overflow: 'hidden' }}>
                 <ParticleBackground count={15} />
                 <Floating3DShape shape="circle" size={200} top="10%" left="5%" opacity={0.15} blur={3} />
                 <Floating3DShape shape="rounded" size={150} bottom="15%" right="8%" delay={1} opacity={0.12} blur={3} />

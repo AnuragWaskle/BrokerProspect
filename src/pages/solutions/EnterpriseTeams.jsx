@@ -6,17 +6,18 @@ import FloatingCard from '../../components/ui/FloatingCard';
 import AnimatedCounter from '../../components/ui/AnimatedCounter';
 import OrangeFeatureCard from '../../components/ui/OrangeFeatureCard';
 import ParticleBackground from '../../components/ui/ParticleBackground';
+import styles from '../../styles/responsive.module.css';
 
 export default function EnterpriseTeams() {
     return (
         <div style={{ background: '#FFFFFF', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
 
             {/* HERO SECTION */}
-            <Section padding="none" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', paddingBottom: '120px', background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FF4D6D 100%)' }}>
+            <Section padding="lg" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FF4D6D 100%)' }}>
                 <ParticleBackground count={15} />
 
                 <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
+                    <div className={styles.cardGrid2} style={{ alignItems: 'center' }}>
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -79,7 +80,7 @@ export default function EnterpriseTeams() {
             </Section>
 
             {/* ENTERPRISE REQUIREMENTS */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg">
                 <div className="container" style={{ maxWidth: '900px', textAlign: 'center' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -131,7 +132,7 @@ export default function EnterpriseTeams() {
             </Section>
 
             {/* DEPLOYMENT OPTIONS */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg" background="gray">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -145,7 +146,7 @@ export default function EnterpriseTeams() {
                         </h2>
                     </motion.div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px' }}>
+                    <div className={styles.cardGridAuto}>
                         <OrangeFeatureCard
                             icon={<Server size={32} />}
                             title="On-Premises"
@@ -169,7 +170,7 @@ export default function EnterpriseTeams() {
             </Section>
 
             {/* SECURITY & COMPLIANCE */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -183,7 +184,7 @@ export default function EnterpriseTeams() {
                         </h2>
                     </motion.div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '28px' }}>
+                    <div className={styles.cardGridAuto}>
                         {[
                             { icon: <Shield size={28} />, title: 'SOC 2 Type II', desc: 'Independently audited security controls' },
                             { icon: <Lock size={28} />, title: 'Role-Based Access', desc: 'Granular permissions and approval workflows' },
@@ -230,9 +231,9 @@ export default function EnterpriseTeams() {
             </Section>
 
             {/* CUSTOM INTEGRATIONS */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg" background="gray">
                 <div className="container">
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
+                    <div className={styles.cardGrid2} style={{ alignItems: 'center' }}>
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -279,7 +280,7 @@ export default function EnterpriseTeams() {
             </Section>
 
             {/* IMPLEMENTATION TIMELINE */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -293,7 +294,7 @@ export default function EnterpriseTeams() {
                         </h2>
                     </motion.div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '32px' }}>
+                    <div className={styles.cardGridAuto}>
                         {[
                             { phase: 'Phase 1', title: 'Discovery & Planning', duration: '2-4 weeks', desc: 'Technical requirements, security review, integration planning' },
                             { phase: 'Phase 2', title: 'Deployment & Integration', duration: '4-8 weeks', desc: 'System deployment, custom integrations, security configuration' },
@@ -338,7 +339,7 @@ export default function EnterpriseTeams() {
             </Section>
 
             {/* ENTERPRISE SUPPORT */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg" background="gray">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -352,7 +353,7 @@ export default function EnterpriseTeams() {
                         </h2>
                     </motion.div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px' }}>
+                    <div className={styles.cardGridAuto}>
                         {[
                             { icon: <Headphones size={28} />, title: 'Dedicated Account Team', desc: 'Named technical account manager and support engineer' },
                             { icon: <Clock size={28} />, title: 'Priority Support SLAs', desc: 'Guaranteed response times for critical issues' },
@@ -395,7 +396,7 @@ export default function EnterpriseTeams() {
             </Section>
 
             {/* PRICING CTA */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg">
                 <div className="container" style={{ maxWidth: '900px' }}>
                     <FloatingCard>
                         <div style={{
@@ -434,7 +435,7 @@ export default function EnterpriseTeams() {
             </Section>
 
             {/* FINAL CTA */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px', background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)', position: 'relative', overflow: 'hidden' }}>
+            <Section padding="lg" style={{ background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)', position: 'relative', overflow: 'hidden' }}>
                 <ParticleBackground count={10} />
 
                 <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '800px' }}>

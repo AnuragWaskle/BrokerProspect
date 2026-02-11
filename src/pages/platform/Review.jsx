@@ -4,13 +4,14 @@ import Section from '../../components/ui/Section';
 import Button from '../../components/ui/Button';
 import FloatingCard from '../../components/ui/FloatingCard';
 import ParticleBackground from '../../components/ui/ParticleBackground';
+import styles from '../../styles/responsive.module.css';
 
 export default function Review() {
     return (
         <div style={{ background: '#FFFFFF', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
 
             {/* HERO SECTION - Centered with Visual Below */}
-            <Section padding="none" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', paddingBottom: '80px', background: 'linear-gradient(180deg, #FFF5F0 0%, #FFFFFF 100%)' }}>
+            <Section padding="lg" style={{ position: 'relative', overflow: 'hidden', paddingTop: '160px', background: 'linear-gradient(180deg, #FFF5F0 0%, #FFFFFF 100%)' }}>
                 <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -44,7 +45,7 @@ export default function Review() {
                         transition={{ duration: 0.8, delay: 0.3 }}
                         style={{ marginTop: '80px', maxWidth: '1000px', margin: '80px auto 0' }}
                     >
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '32px', alignItems: 'center' }}>
+                        <div className={styles.cardGrid3} style={{ alignItems: 'center' }}>
                             {/* Upload Card */}
                             <FloatingCard delay={0.5}>
                                 <div style={{
@@ -62,7 +63,7 @@ export default function Review() {
                             </FloatingCard>
 
                             {/* Arrow */}
-                            <ArrowRight size={32} style={{ color: '#FF6B35' }} />
+                            <ArrowRight size={32} className={styles.hideOnMobile} style={{ color: '#FF6B35' }} />
 
                             {/* Analysis Result Card */}
                             <FloatingCard delay={0.7}>
@@ -90,7 +91,7 @@ export default function Review() {
             </Section>
 
             {/* HOW IT WORKS - Horizontal Timeline */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px', background: 'white' }}>
+            <Section padding="lg" style={{ background: 'white' }}>
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -109,7 +110,7 @@ export default function Review() {
 
                     <div style={{ position: 'relative' }}>
                         {/* Timeline Line */}
-                        <div style={{
+                        <div className={styles.hideOnMobile} style={{
                             position: 'absolute',
                             top: '28px',
                             left: '10%',
@@ -120,7 +121,7 @@ export default function Review() {
                             zIndex: 0
                         }} />
 
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', position: 'relative', zIndex: 1 }}>
+                        <div className={styles.cardGrid4} style={{ position: 'relative', zIndex: 1 }}>
                             {[
                                 { step: '1', icon: <Upload size={24} />, title: 'Upload Policy Documents', desc: 'Drag and drop policies, binders, or coverage summaries' },
                                 { step: '2', icon: <Search size={24} />, title: 'Automated Extraction', desc: 'Agents read and structure every coverage section' },
@@ -159,7 +160,7 @@ export default function Review() {
             </Section>
 
             {/* WHAT YOU GET - Two Column Layout */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg" background="gray">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -176,7 +177,7 @@ export default function Review() {
                         </h2>
                     </motion.div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '32px' }}>
+                    <div className={styles.cardGrid2}>
                         {[
                             { icon: <FileText size={28} />, title: 'Coverage Summaries', desc: 'Structured tables showing limits, deductibles, and key terms by coverage section' },
                             { icon: <Search size={28} />, title: 'Gap Analysis', desc: 'Identified coverage gaps with risk severity and actionable recommendations' },
@@ -227,7 +228,7 @@ export default function Review() {
             </Section>
 
             {/* AGENT CAPABILITIES - Card Grid */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -244,7 +245,7 @@ export default function Review() {
                         </h2>
                     </motion.div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px' }}>
+                    <div className={styles.cardGridAuto}>
                         {[
                             { title: 'Coverage Summary Agent', desc: 'Extracts and structures coverage from complex policy documents' },
                             { title: 'Gap Analysis Agent', desc: 'Identifies uninsured exposures against operational risks' },
@@ -275,7 +276,7 @@ export default function Review() {
             </Section>
 
             {/* FINAL CTA */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px', background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)', position: 'relative', overflow: 'hidden' }}>
+            <Section padding="lg" style={{ background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)', position: 'relative', overflow: 'hidden' }}>
                 <ParticleBackground count={12} />
 
                 <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '800px' }}>

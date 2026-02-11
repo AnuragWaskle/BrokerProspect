@@ -76,7 +76,7 @@ export default function Blog() {
     return (
         <div className="resources-page">
             {/* Featured Header */}
-            <Section padding="xl" style={{ paddingTop: '70px', paddingBottom: '90px', background: '#F9FAFB' }}>
+            <Section padding="lg" style={{ paddingTop: '100px', background: '#F9FAFB' }}>
                 <div className="container">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '60px' }}>
                         <div>
@@ -132,7 +132,7 @@ export default function Blog() {
             </div>
 
             {/* Articles Grid */}
-            <Section padding="xl" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+            <Section padding="lg">
                 <div className="container">
                     {filteredArticles.length > 0 ? (
                         <MasonryGrid columns={3} gap={32}>
@@ -153,7 +153,7 @@ export default function Blog() {
             </Section>
 
             {/* Newsletter */}
-            <Section padding="xl" background="dark" style={{ textAlign: 'center', paddingTop: '80px', paddingBottom: '80px' }}>
+            <Section padding="lg" background="dark" style={{ textAlign: 'center' }}>
                 <div className="container">
                     <div style={{ maxWidth: '600px', margin: '0 auto' }}>
                         <Mail size={48} color="white" style={{ marginBottom: '24px', opacity: 0.5 }} />

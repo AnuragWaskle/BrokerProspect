@@ -13,7 +13,7 @@ export default function Place() {
         <div style={{ background: '#FFFFFF', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
 
             {/* HERO SECTION - Chatbase Style */}
-            <Section padding="none" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', paddingBottom: '100px', background: 'white' }}>
+            <Section padding="lg" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', background: 'white' }}>
                 <Floating3DShape shape="circle" size={160} top="8%" left="3%" delay={0} opacity={0.1} />
                 <Floating3DShape shape="rounded" size={110} top="65%" right="5%" delay={1.8} opacity={0.12} color="linear-gradient(135deg, #FF8C42 0%, #FF4D6D 100%)" />
                 <AnimatedBlob size={320} top="-12%" right="-8%" opacity={0.07} />
@@ -175,7 +175,7 @@ export default function Place() {
             </Section>
 
             {/* PROBLEM SECTION - Chatbase Style */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '80px' }}>
+            <Section padding="lg">
                 <div className="container" style={{ maxWidth: '900px', textAlign: 'center' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -200,7 +200,7 @@ export default function Place() {
             </Section>
 
             {/* HOW IT WORKS - Card Grid Style */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px', position: 'relative', overflow: 'hidden' }}>
+            <Section padding="lg" background="gray">
                 <Floating3DShape shape="circle" size={130} top="12%" left="4%" delay={1} opacity={0.08} />
                 <AnimatedBlob size={280} bottom="-8%" right="-6%" opacity={0.06} delay={1.5} />
                 <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -325,7 +325,7 @@ export default function Place() {
             </Section>
 
             {/* WHAT YOU GET - Two Column Cards */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -342,7 +342,7 @@ export default function Place() {
                         </h2>
                     </motion.div>
 
-                    <div className={styles.cardGrid2} style={{ maxWidth: '1100px', margin: '0 auto' }}>
+                    <div className={styles.cardGrid2} style={{ margin: '0 auto' }}>
                         {[
                             { icon: <FileText size={32} />, title: 'Application Pre-Fill', desc: 'Automatically populate carrier applications for all major insurers', gradient: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)' },
                             { icon: <Zap size={32} />, title: 'Business Narratives', desc: 'Underwriter-ready narratives that sell the risk professionally', gradient: 'linear-gradient(135deg, #FF8C42 0%, #FF4D6D 100%)' },
@@ -388,7 +388,7 @@ export default function Place() {
             </Section>
 
             {/* CARRIER SUPPORT - Icon Grid */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg" background="gray">
                 <div className="container" style={{ maxWidth: '900px', textAlign: 'center' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -449,7 +449,7 @@ export default function Place() {
             </Section>
 
             {/* FINAL CTA */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px', background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FF4D6D 100%)', position: 'relative', overflow: 'hidden' }}>
+            <Section padding="lg" style={{ background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FF4D6D 100%)', position: 'relative', overflow: 'hidden' }}>
                 <ParticleBackground count={15} />
 
                 <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '800px' }}>

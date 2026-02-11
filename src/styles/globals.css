@@ -18,6 +18,13 @@ html {
     scroll-behavior: smooth;
     color: var(--color-text-body);
     background-color: var(--color-bg-white);
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
 }
 
 body {
@@ -70,6 +77,12 @@ ol {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 24px;
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 0 16px;
+    }
 }
 
 .text-primary {

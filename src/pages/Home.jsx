@@ -23,10 +23,8 @@ export default function Home() {
         <div style={{ background: '#FFFFFF', color: '#111827', overflowX: 'hidden' }}>
 
             {/* 1. HERO SECTION */}
-            <Section padding="none" style={{
+            <Section padding="none" className={styles.responsivePaddingXL} style={{
                 position: 'relative',
-                paddingTop: '120px',
-                paddingBottom: '100px',
                 overflow: 'hidden',
                 backgroundImage: 'linear-gradient(rgba(90, 98, 117, 0.07), rgba(17, 24, 39, 0.9)), url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop")',
                 backgroundSize: 'cover',
@@ -158,7 +156,7 @@ export default function Home() {
             </Section>
 
             {/* 4. PLATFORM DISCOVERY (DARK SECTION) */}
-            <Section style={{ background: '#0F172A', color: 'white', position: 'relative', overflow: 'hidden', padding: '120px 0' }}>
+            <Section padding="lg" style={{ background: '#0F172A', color: 'white', position: 'relative', overflow: 'hidden' }}>
                 <ParticleBackground count={20} />
                 <Floating3DShape shape="rounded" size={400} top="-10%" right="-10%" color="rgba(79, 70, 229, 0.1)" blur={80} />
                 <AnimatedBlob size={600} bottom="-20%" left="-10%" opacity={0.05} color="#FF6B35" />
@@ -327,8 +325,7 @@ export default function Home() {
             </Section >
 
             {/* 7. CTA SECTION */}
-            < Section style={{ padding: '120px 0', position: 'relative', overflow: 'hidden' }
-            }>
+            <Section padding="lg" style={{ position: 'relative', overflow: 'hidden' }}>
                 <AnimatedBlob size={400} top="-10%" left="-10%" opacity={0.05} color="#FF6B35" />
                 <Floating3DShape shape="triangle" size={150} bottom="10%" right="10%" opacity={0.1} />
 
@@ -360,7 +357,7 @@ export default function Home() {
             </Section >
 
             {/* 8. VIDEO SECTION (See It in Action) */}
-            <Section style={{ background: '#0F172A', color: 'white', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
+            <Section padding="lg" style={{ background: '#0F172A', color: 'white', position: 'relative', overflow: 'hidden' }}>
                 <MouseParallax strength={0.05}>
                     <Floating3DShape shape="circle" size={300} top="-10%" left="-5%" color="rgba(255, 107, 53, 0.1)" blur={80} />
                 </MouseParallax>
@@ -480,8 +477,7 @@ export default function Home() {
             </Section >
 
             {/* 10. TESTIMONIAL SECTION */}
-            < Section style={{ background: '#FFFFFF', padding: '120px 0' }
-            }>
+            <Section padding="lg" style={{ background: '#FFFFFF' }}>
                 <div className="container">
                     <ScrollReveal3D direction="up">
                         <div style={{

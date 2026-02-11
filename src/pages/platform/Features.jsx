@@ -3,13 +3,14 @@ import { Shield, Lock, ShieldCheck, Eye, Key, FileText, ArrowRight, Zap, Award, 
 import Section from '../../components/ui/Section';
 import Button from '../../components/ui/Button';
 import Badge from '../../components/ui/Badge';
+import styles from '../../styles/responsive.module.css';
 
 export default function Features() {
     return (
         <div style={{ background: '#FFFFFF', color: '#111827', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
 
             {/* 1. HERO SECTION */}
-            <Section padding="xl" style={{ paddingTop: '180px', paddingBottom: '160px', textAlign: 'center' }}>
+            <Section padding="lg" style={{ paddingTop: '180px', textAlign: 'center' }}>
                 <div className="container" style={{ maxWidth: 1000 }}>
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
                         <div style={{ fontSize: '1rem', fontWeight: 700, color: '#4F46E5', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 24 }}>Enterprise-Grade Security</div>
@@ -30,9 +31,9 @@ export default function Features() {
             </Section>
 
             {/* 2. SECURITY PILLARS */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '160px', paddingBottom: '160px' }}>
+            <Section padding="lg" background="gray">
                 <div className="container">
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 40 }}>
+                    <div className={styles.cardGrid3}>
                         <SecurityCard
                             icon={<Lock />}
                             title="AES-256 Encryption"
@@ -53,8 +54,8 @@ export default function Features() {
             </Section>
 
             {/* 3. COMPLIANCE SECTION */}
-            <Section padding="xl" style={{ paddingTop: '160px', paddingBottom: '160px' }}>
-                <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 120, alignItems: 'center' }}>
+            <Section padding="lg">
+                <div className={`${styles.cardGrid2} container`} style={{ alignItems: 'center' }}>
                     <div>
                         <h2 style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: 32, lineHeight: 1.1 }}>Compliance <br /> by Design.</h2>
                         <p style={{ fontSize: '1.25rem', color: '#4B5563', marginBottom: 40, lineHeight: 1.6 }}>
@@ -76,7 +77,7 @@ export default function Features() {
             </Section>
 
             {/* 4. FINAL CTA */}
-            <Section padding="lg" style={{ background: 'white', paddingBottom: 160 }}>
+            <Section padding="lg" style={{ background: 'white' }}>
                 <div className="container" style={{ maxWidth: 1000 }}>
                     <div style={{
                         background: '#EEF2FF',

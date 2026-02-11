@@ -6,17 +6,18 @@ import FloatingCard from '../../components/ui/FloatingCard';
 import AnimatedCounter from '../../components/ui/AnimatedCounter';
 import OrangeFeatureCard from '../../components/ui/OrangeFeatureCard';
 import ParticleBackground from '../../components/ui/ParticleBackground';
+import styles from '../../styles/responsive.module.css';
 
 export default function SoloBrokers() {
     return (
         <div style={{ background: '#FFFFFF', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
 
             {/* HERO SECTION */}
-            <Section padding="none" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', paddingBottom: '120px', background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FF4D6D 100%)' }}>
+            <Section padding="lg" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FF4D6D 100%)' }}>
                 <ParticleBackground count={15} />
 
                 <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
+                    <div className={styles.cardGrid2} style={{ alignItems: 'center' }}>
                         {/* Left: Text Content */}
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
@@ -72,7 +73,7 @@ export default function SoloBrokers() {
             </Section>
 
             {/* CHALLENGE SECTION */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg">
                 <div className="container" style={{ maxWidth: '900px', textAlign: 'center' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -89,7 +90,7 @@ export default function SoloBrokers() {
                     </motion.div>
 
                     {/* Challenge Icons */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '24px' }}>
+                    <div className={styles.cardGridAuto}>
                         {[
                             'Prospecting & BDR',
                             'Policy Review',
@@ -121,7 +122,7 @@ export default function SoloBrokers() {
             </Section>
 
             {/* FEATURES SECTION */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg" background="gray">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -138,7 +139,7 @@ export default function SoloBrokers() {
                         </p>
                     </motion.div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px' }}>
+                    <div className={styles.cardGridAuto}>
                         <OrangeFeatureCard
                             icon={<TrendingUp size={32} />}
                             title="Growth & Prospecting"
@@ -168,7 +169,7 @@ export default function SoloBrokers() {
             </Section>
 
             {/* BEFORE/AFTER SECTION */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -182,7 +183,7 @@ export default function SoloBrokers() {
                         </h2>
                     </motion.div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', maxWidth: '1100px', margin: '0 auto' }}>
+                    <div className={styles.cardGrid2} style={{ margin: '0 auto' }}>
                         {/* Before */}
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
@@ -245,7 +246,7 @@ export default function SoloBrokers() {
             </Section>
 
             {/* PRICING SECTION */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg" background="gray">
                 <div className="container" style={{ maxWidth: '800px' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -304,7 +305,7 @@ export default function SoloBrokers() {
             </Section>
 
             {/* FINAL CTA */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px', background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)', position: 'relative', overflow: 'hidden' }}>
+            <Section padding="lg" style={{ background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)', position: 'relative', overflow: 'hidden' }}>
                 <ParticleBackground count={10} />
 
                 <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '800px' }}>

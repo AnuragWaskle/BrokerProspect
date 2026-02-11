@@ -6,17 +6,18 @@ import FloatingCard from '../../components/ui/FloatingCard';
 import AnimatedCounter from '../../components/ui/AnimatedCounter';
 import OrangeFeatureCard from '../../components/ui/OrangeFeatureCard';
 import ParticleBackground from '../../components/ui/ParticleBackground';
+import styles from '../../styles/responsive.module.css';
 
 export default function GrowingAgencies() {
     return (
         <div style={{ background: '#FFFFFF', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
 
             {/* HERO SECTION */}
-            <Section padding="none" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', paddingBottom: '120px', background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FF4D6D 100%)' }}>
+            <Section padding="lg" style={{ position: 'relative', overflow: 'hidden', paddingTop: '140px', background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FF4D6D 100%)' }}>
                 <ParticleBackground count={15} />
 
                 <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
+                    <div className={styles.cardGrid2} style={{ alignItems: 'center' }}>
                         {/* Left: Text Content */}
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
@@ -69,7 +70,7 @@ export default function GrowingAgencies() {
             </Section>
 
             {/* CHALLENGE SECTION */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg">
                 <div className="container" style={{ maxWidth: '900px', textAlign: 'center' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -85,7 +86,7 @@ export default function GrowingAgencies() {
                         </p>
                     </motion.div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '24px' }}>
+                    <div className={styles.cardGridAuto}>
                         {[
                             'Every producer works differently',
                             'New hires take months to ramp',
@@ -118,7 +119,7 @@ export default function GrowingAgencies() {
             </Section>
 
             {/* FEATURES SECTION */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg" background="gray">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -135,7 +136,7 @@ export default function GrowingAgencies() {
                         </p>
                     </motion.div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px' }}>
+                    <div className={styles.cardGridAuto}>
                         <OrangeFeatureCard
                             icon={<Target size={32} />}
                             title="Consistent Prospecting"
@@ -165,7 +166,7 @@ export default function GrowingAgencies() {
             </Section>
 
             {/* TEAM MANAGEMENT SECTION */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -179,7 +180,7 @@ export default function GrowingAgencies() {
                         </h2>
                     </motion.div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '32px' }}>
+                    <div className={styles.cardGridAuto}>
                         {[
                             { icon: <Users size={28} />, title: 'Role-Based Access', desc: 'Control which producers access which workflows and client data' },
                             { icon: <Database size={28} />, title: 'Shared Knowledge Base', desc: 'Upload appetite guides once—every producer accesses the same information' },
@@ -224,7 +225,7 @@ export default function GrowingAgencies() {
             </Section>
 
             {/* BEFORE/AFTER SECTION */}
-            <Section padding="xl" style={{ background: '#F9FAFB', paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg" background="gray">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -238,7 +239,7 @@ export default function GrowingAgencies() {
                         </h2>
                     </motion.div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', maxWidth: '1100px', margin: '0 auto' }}>
+                    <div className={styles.cardGrid2} style={{ margin: '0 auto' }}>
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -287,7 +288,7 @@ export default function GrowingAgencies() {
             </Section>
 
             {/* PRICING SECTION */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+            <Section padding="lg">
                 <div className="container" style={{ maxWidth: '800px' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -339,7 +340,7 @@ export default function GrowingAgencies() {
                                 ))}
                             </div>
 
-                            <div style={{ display: 'flex', gap: '12px' }}>
+                            <div className={styles.cardGrid2}>
                                 <Button size="xl" style={{ background: 'linear-gradient(135deg, #FF6B35 0%, #FF4D6D 100%)', color: 'white', borderRadius: '12px', padding: '18px 36px', fontSize: '1.125rem', fontWeight: 600, border: 'none', flex: 1 }}>
                                     Request Team Demo
                                 </Button>
@@ -353,7 +354,7 @@ export default function GrowingAgencies() {
             </Section>
 
             {/* FINAL CTA */}
-            <Section padding="xl" style={{ paddingTop: '120px', paddingBottom: '120px', background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)', position: 'relative', overflow: 'hidden' }}>
+            <Section padding="lg" style={{ background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)', position: 'relative', overflow: 'hidden' }}>
                 <ParticleBackground count={10} />
 
                 <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '800px' }}>
