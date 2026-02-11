@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import React from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Floating3DShape({
     shape = 'circle',
@@ -58,11 +59,52 @@ export default function Floating3DShape({
 }
 
 export function Parallax3DElement({ children, speed = 0.5, className = '', style = {} }) {
-    // Simplified version without hooks
+    const { scrollYProgress } = useScroll();
+    const y = useTransform(scrollYProgress, [0, 1], [0, -100 * speed]);
+
     return (
-        <div className={className} style={{ transformStyle: 'preserve-3d', ...style }}>
+        <motion.div
+            className={className}
+            style={{ y, transformStyle: 'preserve-3d', ...style }}
+        >
             {children}
-        </div>
+        </motion.div>
+    );
+}
+
+export function MouseParallax({ children, strength = 0.05, className = '', style = {} }) {
+    const { scrollY } = useScroll();
+    // Simple mouse parallax effect using event listener approach would be better for performance
+    // but sticking to framer-motion for consistency if possible.
+    // However, simple mouse move is often easier with state or direct ref manipulation.
+    // Let's use a simple mouse move listener on the window for now.
+
+    const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
+
+    React.useEffect(() => {
+        const handleMouseMove = (e) => {
+            setMousePosition({
+                x: (e.clientX / window.innerWidth - 0.5) * 2,
+                y: (e.clientY / window.innerHeight - 0.5) * 2
+            });
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, []);
+
+    return (
+        <motion.div
+            animate={{
+                x: mousePosition.x * 100 * strength,
+                y: mousePosition.y * 100 * strength
+            }}
+            transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
+            className={className}
+            style={style}
+        >
+            {children}
+        </motion.div>
     );
 }
 

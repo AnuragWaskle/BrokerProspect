@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import {
     Search, Users, Mail, TrendingUp, ArrowRight, Play, CheckCircle,
     MessageSquare, Zap, Shield, FileCheck, Calculator, FileText,
-    Globe, Cpu, Database, BarChart3, Lock, Sparkles, Award
+    Globe, Cpu, Database, BarChart3, Lock, Sparkles, Award, Building2
 } from 'lucide-react';
 
 import Section from '../components/ui/Section';
@@ -11,10 +11,11 @@ import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
 import FloatingCard from '../components/ui/FloatingCard';
 import ParticleBackground from '../components/ui/ParticleBackground';
-import Floating3DShape, { ScrollReveal3D, Parallax3DElement, Rotating3DCard } from '../components/ui/3DAnimations';
+import Floating3DShape, { ScrollReveal3D, Parallax3DElement, Rotating3DCard, MouseParallax } from '../components/ui/3DAnimations';
 import AnimatedBlob, { PulsingOrb } from '../components/ui/AnimatedBlob';
 import Marquee from '../components/ui/Marquee';
 import AgentUserChat from '../components/ui/AgentUserChat';
+import AnimatedISVG from '../components/ui/AnimatedISVG';
 import styles from '../styles/responsive.module.css';
 
 export default function Home() {
@@ -22,9 +23,22 @@ export default function Home() {
         <div style={{ background: '#FFFFFF', color: '#111827', overflowX: 'hidden' }}>
 
             {/* 1. HERO SECTION */}
-            <Section padding="none" style={{ position: 'relative', paddingTop: '120px', paddingBottom: '100px', overflow: 'hidden' }}>
-                <Floating3DShape shape="circle" size={400} top="-10%" right="-5%" color="rgba(255, 107, 53, 0.05)" blur={60} />
-                <Floating3DShape shape="rounded" size={300} bottom="10%" left="-5%" color="rgba(79, 70, 229, 0.05)" blur={60} />
+            <Section padding="none" style={{
+                position: 'relative',
+                paddingTop: '120px',
+                paddingBottom: '100px',
+                overflow: 'hidden',
+                backgroundImage: 'linear-gradient(rgba(90, 98, 117, 0.07), rgba(17, 24, 39, 0.9)), url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                color: 'white'
+            }}>
+                <MouseParallax strength={0.1}>
+                    <Floating3DShape shape="circle" size={400} top="-10%" right="-5%" color="rgba(255, 107, 53, 0.05)" blur={60} />
+                </MouseParallax>
+                <MouseParallax strength={0.15}>
+                    <Floating3DShape shape="rounded" size={300} bottom="10%" left="-5%" color="rgba(79, 70, 229, 0.05)" blur={60} />
+                </MouseParallax>
                 <AnimatedBlob size={500} top="20%" left="50%" opacity={0.03} />
                 <PulsingOrb size={150} top="15%" left="15%" opacity={0.2} />
 
@@ -32,15 +46,15 @@ export default function Home() {
                     <div className={styles.heroGrid}>
                         <ScrollReveal3D direction="left">
                             <div style={{ paddingTop: '40px' }}>
-                                <Badge style={{ marginBottom: '24px' }}>Introducing Broker Agentx</Badge>
                                 <h1 style={{
                                     fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
                                     fontWeight: 800,
                                     lineHeight: 1.1,
                                     marginBottom: '24px',
-                                    letterSpacing: '-0.02em'
+                                    letterSpacing: '-0.02em',
+                                    color: 'white'
                                 }}>
-                                    The AI-native <br />
+                                    The A<AnimatedISVG size={60} />-native <br />
                                     <span style={{
                                         background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)',
                                         WebkitBackgroundClip: 'text',
@@ -49,23 +63,20 @@ export default function Home() {
                                 </h1>
                                 <p style={{
                                     fontSize: 'clamp(1.1rem, 2vw, 1.25rem)',
-                                    color: '#4B5563',
+                                    color: '#D1D5DB', // lighter gray for dark bg
                                     marginBottom: '40px',
                                     maxWidth: '540px',
                                     lineHeight: 1.5
                                 }}>
                                     Transform your brokerage into a connected knowledge system—one that learns, optimizes, and improves itself intelligently.
                                 </p>
-                                <div className={styles.buttonGroup}>
-                                    <Button size="xl" style={{ background: '#111827', border: 'none' }}>Start for free</Button>
-                                    <Button size="xl" variant="outline">Talk to us</Button>
-                                </div>
+
                             </div>
                         </ScrollReveal3D>
 
                         <ScrollReveal3D direction="right" delay={0.2}>
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-                                <Parallax3DElement speed={-0.2}>
+                                <Parallax3DElement speed={5}>
                                     <AgentUserChat />
                                 </Parallax3DElement>
 
@@ -107,7 +118,7 @@ export default function Home() {
                 <div className="container">
                     <div style={{ textAlign: 'center', marginBottom: '80px' }}>
                         <ScrollReveal3D direction="up">
-                            <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, marginBottom: '20px' }}>
+                            <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, marginBottom: '20px', marginTop: '60px' }}>
                                 Intelligence that scales <br /> with your business
                             </h2>
                             <p style={{ color: '#4B5563', maxWidth: '600px', margin: '0 auto', fontSize: '1.1rem' }}>
@@ -156,7 +167,7 @@ export default function Home() {
                     <div style={{ textAlign: 'center', marginBottom: '64px' }}>
                         <ScrollReveal3D direction="up">
                             <Badge style={{ background: 'rgba(255,107,53,0.2)', color: '#FF6B35', border: 'none', marginBottom: '16px' }}>Platform</Badge>
-                            <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, marginBottom: '24px' }}>Discover the Agentx platform</h2>
+                            <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, marginBottom: '24px', color: 'white' }}>Discover the Agentx platform</h2>
                         </ScrollReveal3D>
                     </div>
 
@@ -168,10 +179,11 @@ export default function Home() {
                             border: '1px solid rgba(255,255,255,0.1)',
                             boxShadow: '0 50px 100px -20px rgba(0,0,0,0.5)',
                             position: 'relative',
-                            overflow: 'hidden'
+                            overflow: 'hidden',
+                            minHeight: '300px'
                         }}>
                             <img
-                                src="https://images.unsplash.com/photo-1551288049-bbbda546697a?auto=format&fit=crop&q=80&w=2000"
+                                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000"
                                 alt="Platform Preview"
                                 style={{ width: '100%', borderRadius: '16px', display: 'block' }}
                             />
@@ -217,7 +229,7 @@ export default function Home() {
                                         <p style={{ fontWeight: 600 }}>Automation Accuracy</p>
                                     </div>
                                 </Rotating3DCard>
-                                <Floating3DShape shape="circle" size={80} bottom="-20px" right="-20px" opacity={1} zIndex={5} color="#111827" />
+                                <Floating3DShape shape="circle" size={80} bottom="-20px" right="-20px" opacity={1} zIndex={5} color="#FF6B35" />
                             </div>
                         </ScrollReveal3D>
 
@@ -334,67 +346,294 @@ export default function Home() {
                         }}>
                             <ParticleBackground count={15} />
                             <div style={{ position: 'relative', zIndex: 1 }}>
-                                <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, marginBottom: '32px' }}>
+                                <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, marginBottom: '32px', color: '#FF6B35' }}>
                                     Ready to automate your <br /> brokerage?
                                 </h2>
                                 <p style={{ fontSize: '1.25rem', opacity: 0.7, marginBottom: '48px', maxWidth: '600px', margin: '0 auto 48px' }}>
                                     Join the next generation of AI-native brokerages today and start your 14-day free trial.
                                 </p>
-                                <div className={styles.buttonGroup} style={{ justifyContent: 'center' }}>
-                                    <Button size="xl" style={{ background: '#FF6B35', border: 'none' }}>Get Started Now</Button>
-                                    <Button size="xl" style={{ border: '1px solid white', background: 'transparent', color: 'white' }}>Schedule a Demo</Button>
-                                </div>
+
                             </div>
                         </div>
                     </ScrollReveal3D>
                 </div>
             </Section >
 
-            {/* FOOTER */}
-            < footer style={{ padding: '80px 0 40px', borderTop: '1px solid #F3F4F6', background: '#FFFFFF' }}>
-                <div className="container">
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '48px', marginBottom: '64px' }}>
-                        <div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
-                                <div style={{ width: 32, height: 32, background: '#FF6B35', borderRadius: '8px' }}></div>
-                                <span style={{ fontWeight: 800, fontSize: '1.25rem' }}>Broker Agentx</span>
+            {/* 8. VIDEO SECTION (See It in Action) */}
+            <Section style={{ background: '#0F172A', color: 'white', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
+                <MouseParallax strength={0.05}>
+                    <Floating3DShape shape="circle" size={300} top="-10%" left="-5%" color="rgba(255, 107, 53, 0.1)" blur={80} />
+                </MouseParallax>
+                <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+                    <div className={styles.heroGrid} style={{ alignItems: 'flex-start' }}>
+                        <ScrollReveal3D direction="left">
+                            <div style={{ paddingRight: '40px' }}>
+                                <Badge style={{ background: 'rgba(255,107,53,0.2)', color: '#FF6B35', border: 'none', marginBottom: '16px' }}>See It in Action</Badge>
+                                <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, marginBottom: '24px', lineHeight: 1.1, color: 'white' }}>
+                                    Watch Broker Agentx <br /> handle a real workflow
+                                </h2>
+                                <p style={{ fontSize: '1.1rem', color: '#9CA3AF', marginBottom: '32px', maxWidth: '480px' }}>
+                                    From prospecting to submission in under 5 minutes.
+                                </p>
+                                <div className={styles.buttonGroup}>
+                                    <Button size="lg" style={{ background: '#FF6B35', border: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        <Play size={20} fill="currentColor" /> Watch Demo
+                                    </Button>
+                                    <Button size="lg" variant="outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', borderColor: 'rgba(255,255,255,0.2)', color: 'white' }}>
+                                        Get Started <ArrowRight size={20} />
+                                    </Button>
+                                </div>
                             </div>
-                            <p style={{ color: '#6B7280', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                                Redefining brokerage with AI-native systems. Automate your workflow, delight your clients.
-                            </p>
-                        </div>
-                        <div>
-                            <h4 style={{ fontWeight: 700, marginBottom: '24px' }}>Product</h4>
-                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', color: '#6B7280', fontSize: '0.95rem' }}>
-                                <li>Features</li>
-                                <li>Integrations</li>
-                                <li>Pricing</li>
-                                <li>Changelog</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 style={{ fontWeight: 700, marginBottom: '24px' }}>Company</h4>
-                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', color: '#6B7280', fontSize: '0.95rem' }}>
-                                <li>About Us</li>
-                                <li>Careers</li>
-                                <li>Blog</li>
-                                <li>Contact</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 style={{ fontWeight: 700, marginBottom: '24px' }}>Legal</h4>
-                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', color: '#6B7280', fontSize: '0.95rem' }}>
-                                <li>Privacy Policy</li>
-                                <li>Terms of Service</li>
-                                <li>Cookie Policy</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div style={{ borderTop: '1px solid #F3F4F6', paddingTop: '40px', textAlign: 'center', fontSize: '0.9rem', color: '#9CA3AF' }}>
-                        <p>&copy; 2026 Broker Agentx. All rights reserved.</p>
+                        </ScrollReveal3D>
+
+                        <ScrollReveal3D direction="right" delay={0.2}>
+                            <Rotating3DCard>
+                                <div style={{
+                                    position: 'relative',
+                                    borderRadius: '24px',
+                                    overflow: 'hidden',
+                                    boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
+                                    border: '1px solid rgba(255,255,255,0.1)'
+                                }}>
+                                    <img
+                                        src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600"
+                                        alt="Workflow Demo"
+                                        style={{ width: '100%', display: 'block' }}
+                                    />
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: '50%',
+                                        left: '50%',
+                                        transform: 'translate(-50%, -50%)',
+                                        width: '80px',
+                                        height: '80px',
+                                        background: 'rgba(255,255,255,0.2)',
+                                        backdropFilter: 'blur(10px)',
+                                        borderRadius: '50%',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        border: '1px solid rgba(255,255,255,0.3)',
+                                        cursor: 'pointer',
+                                        transition: 'transform 0.2s ease'
+                                    }}>
+                                        <Play size={32} fill="white" />
+                                    </div>
+                                </div>
+                            </Rotating3DCard>
+                        </ScrollReveal3D>
                     </div>
                 </div>
-            </footer >
+            </Section>
+
+            {/* 9. HOWEVER YOU WORK */}
+            <Section style={{ background: '#F3F4F6', position: 'relative' }}>
+                <div className="container">
+                    <ScrollReveal3D direction="up">
+                        <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+                            <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, marginBottom: '24px' }}>However you work</h2>
+                        </div>
+                    </ScrollReveal3D>
+
+                    <div className={styles.cardGrid2} style={{ gap: '32px' }}>
+                        {[
+                            { title: 'Solo Brokers', desc: 'Solo brokers who need to compete with larger agencies', color: '#8B5CF6', icon: Users },
+                            { title: 'Growing Agencies', desc: 'Growing agencies that need consistent processes across teams', color: '#10B981', icon: TrendingUp },
+                            { title: 'Enterprise Teams', desc: 'Enterprise teams that want to automate at scale with on-premises options', color: '#3B82F6', icon: Building2 }, // Building2 needs import
+                            { title: 'Specialty Brokers', desc: 'Specialty brokers handling complex risks across multiple lines', color: '#F59E0B', icon: Award }
+                        ].map((item, idx) => (
+                            <ScrollReveal3D key={idx} direction="up" delay={idx * 0.1}>
+                                <div style={{
+                                    background: 'white',
+                                    padding: '32px',
+                                    borderRadius: '24px',
+                                    border: '1px solid #E5E7EB',
+                                    height: '100%',
+                                    display: 'flex',
+                                    gap: '24px',
+                                    alignItems: 'flex-start',
+                                    transition: 'transform 0.3s ease',
+                                    cursor: 'pointer'
+                                }} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
+                                    <div style={{
+                                        minWidth: '56px',
+                                        height: '56px',
+                                        borderRadius: '16px',
+                                        background: `${item.color}15`,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <item.icon size={28} color={item.color} />
+                                    </div>
+                                    <div>
+                                        <h4 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '8px' }}>{item.title}</h4>
+                                        <p style={{ color: '#6B7280', lineHeight: 1.5 }}>{item.desc}</p>
+                                    </div>
+                                </div>
+                            </ScrollReveal3D>
+                        ))}
+                    </div>
+
+                </div>
+            </Section >
+
+            {/* 10. TESTIMONIAL SECTION */}
+            < Section style={{ background: '#FFFFFF', padding: '120px 0' }
+            }>
+                <div className="container">
+                    <ScrollReveal3D direction="up">
+                        <div style={{
+                            background: '#F9FAFB',
+                            borderRadius: '32px',
+                            border: '1px solid #F3F4F6',
+                            overflow: 'hidden',
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'
+                        }}>
+                            <div style={{ position: 'relative', minHeight: '300px' }}>
+                                <img
+                                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
+                                    alt="Testimonial"
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute' }}
+                                />
+                            </div>
+                            <div style={{ padding: '64px' }}>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png" alt="Company Logo" style={{ height: '32px', marginBottom: '32px', opacity: 0.8 }} />
+                                <h3 style={{ fontSize: '1.5rem', fontWeight: 600, lineHeight: 1.5, marginBottom: '32px', color: '#111827' }}>
+                                    "We went from spending 80% of our time on admin work to 80% on client strategy... It's not just a tool; it's a new way of doing business."
+                                </h3>
+                                <div>
+                                    <p style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '4px' }}>Paul Christie</p>
+                                    <p style={{ color: '#6B7280' }}>VP at Lawrie Insurance Group</p>
+                                </div>
+                            </div>
+                        </div>
+                    </ScrollReveal3D >
+                </div >
+            </Section >
+
+            {/* 10. CONNECTED INTELLIGENCE */}
+            < Section style={{ background: '#F8F9FA' }
+            }>
+                <div className="container">
+                    <div className={styles.heroGrid} style={{ alignItems: 'center' }}>
+                        <ScrollReveal3D direction="left">
+                            <Badge style={{ marginBottom: '24px' }}>Connected Intelligence</Badge>
+                            <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, marginBottom: '24px' }}>
+                                Works where you work
+                            </h2>
+                            <p style={{ fontSize: '1.1rem', color: '#4B5563', marginBottom: '32px', lineHeight: 1.6 }}>
+                                Broker Agentx integrates with your AMS, CRM, email, calendar, and marketing tools—executing workflows across your entire system.
+                            </p>
+                            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 40px 0', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                                {[
+                                    'Multi-agent architecture with session-aware memory',
+                                    'Every output is grounded in your documents—no hallucinations',
+                                    'Enterprise-grade security. SOC 2 compliant'
+                                ].map((item, i) => (
+                                    <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '1.05rem', color: '#374151' }}>
+                                        <div style={{ minWidth: '24px', height: '24px', borderRadius: '50%', background: '#DEF7EC', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                            <CheckCircle size={14} color="#03543F" />
+                                        </div>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className={styles.buttonGroup}>
+                                <Button variant="outline">View Integrations</Button>
+                                <Button variant="ghost">Technical Documentation</Button>
+                            </div>
+                        </ScrollReveal3D>
+                        <ScrollReveal3D direction="right" delay={0.2}>
+                            <div className={styles.logoGrid} style={{ opacity: 0.6 }}>
+                                {/* Placeholder icons for integrations */}
+                                <Cpu size={64} />
+                                <Database size={64} />
+                                <MessageSquare size={64} />
+                                <Mail size={64} />
+                                <Globe size={64} />
+                                <Lock size={64} />
+                            </div>
+                        </ScrollReveal3D>
+                    </div>
+                </div>
+            </Section >
+
+            {/* 11. PRICING SECTION */}
+            < Section >
+                <div className="container">
+                    <ScrollReveal3D direction="up">
+                        <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+                            <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, marginBottom: '24px' }}>Simple, transparent pricing</h2>
+                            <p style={{ fontSize: '1.1rem', color: '#4B5563' }}>Full platform access. All features included.</p>
+                        </div>
+                    </ScrollReveal3D>
+
+                    <div className={styles.cardGrid2} style={{ maxWidth: '900px', margin: '0 auto' }}>
+                        <ScrollReveal3D direction="left">
+                            <Rotating3DCard>
+                                <div style={{
+                                    padding: '48px',
+                                    borderRadius: '24px',
+                                    border: '1px solid #E5E7EB',
+                                    background: 'white',
+                                    textAlign: 'center',
+                                    height: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column'
+                                }}>
+                                    <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>Monthly</h3>
+                                    <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', marginBottom: '8px' }}>
+                                        <span style={{ fontSize: '3rem', fontWeight: 800, color: '#111827' }}>$99</span>
+                                        <span style={{ color: '#6B7280', fontWeight: 500 }}>/user/mo</span>
+                                    </div>
+                                    <p style={{ color: '#6B7280', marginBottom: '32px' }}>Billed monthly</p>
+                                    <Button style={{ width: '100%', marginBottom: '24px' }}>Get Started</Button>
+                                    <ul style={{ textAlign: 'left', listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                        <li style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem' }}><CheckCircle size={16} color="#10B981" /> Full platform access</li>
+                                        <li style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem' }}><CheckCircle size={16} color="#10B981" /> Unlimited workflows</li>
+                                    </ul>
+                                </div>
+                            </Rotating3DCard>
+                        </ScrollReveal3D>
+
+                        <ScrollReveal3D direction="right">
+                            <Rotating3DCard>
+                                <div style={{
+                                    padding: '48px',
+                                    borderRadius: '24px',
+                                    border: '2px solid #FF6B35',
+                                    background: '#FFF7ED',
+                                    textAlign: 'center',
+                                    height: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    position: 'relative'
+                                }}>
+                                    <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', background: '#FF6B35', color: 'white', padding: '4px 12px', borderRadius: '100px', fontSize: '0.8rem', fontWeight: 700 }}>
+                                        BEST VALUE
+                                    </div>
+                                    <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>Yearly</h3>
+                                    <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', marginBottom: '8px' }}>
+                                        <span style={{ fontSize: '3rem', fontWeight: 800, color: '#FF6B35' }}>$999</span>
+                                        <span style={{ color: '#6B7280', fontWeight: 500 }}>/year</span>
+                                    </div>
+                                    <p style={{ color: '#16A34A', marginBottom: '32px', fontWeight: 600 }}>Save $189 per year</p>
+                                    <Button style={{ width: '100%', background: '#FF6B35', border: 'none', marginBottom: '24px' }}>Get Started</Button>
+                                    <ul style={{ textAlign: 'left', listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                        <li style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem' }}><CheckCircle size={16} color="#10B981" /> Everything in Monthly</li>
+                                        <li style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem' }}><CheckCircle size={16} color="#10B981" /> Priority support</li>
+                                    </ul>
+                                </div>
+                            </Rotating3DCard>
+                        </ScrollReveal3D>
+                    </div>
+                </div>
+            </Section >
+
+
         </div >
     );
 }
